@@ -16,7 +16,7 @@
 // used for the measured temperature and reference temperature respectively.  
 // Versions:
 //  	V1.0: 3/11/2025 - first version, successfully converted temps to BCD
-//	
+//	V1.1: 3/11/2025 - working temperature comparison and output
 //-----------------------------
 
 ;#include ".\myConfigFile.inc"
@@ -57,7 +57,7 @@ measTempL   equ	    0x70
     PSECT absdata,abs,ovrld        
     
     ORG         0x20            ; begin code at 0x20 in program memory
-    MOVLW	0x00		; set port D as output
+    MOVLW	0xFF		; set port D as output
     MOVWF	TRISD,0
     MOVLW	measTempInput	; place temperature inputs into data memory
     MOVWF	measTemp, 0
@@ -106,6 +106,31 @@ _refTempToBCDM:			; subtract 10 until negative to get medium digit
 _refTempToBCDL:
     MOVFF	0x25, refTempL	; the remainder will be just the ones digit
 
+    CLRF	0x25
+// comparing measured and reference temps
+    BTFSC	measTemp, 7	; if the meas temp is negative, will heat
+    BRA		_heat
+    
+    MOVLW	measTempInput
+    SUBWF	refTemp
+    BN		_cool		; if meas temp > ref temp, cool
+    BZ		_turnOff	; if meas temp == ref temp, turn off cool and heat
+
+_heat:				; if meas temp < ref temp, heat
+    MOVLW	0x01
+    MOVWF	contReg
+    BSF		LED_HOT
+    BRA		_sleep
+_cool:
+    MOVLW	0x02
+    MOVWF	contReg
+    BSF		LED_COOL
+    BRA		_sleep
+_turnOff:
+    CLRF	contReg
+    CLRF	PORTD
+
+_sleep:
     SLEEP
 END
 
