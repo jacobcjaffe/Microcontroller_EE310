@@ -18,6 +18,7 @@
 //  	V1.0: 3/11/2025 - first version, successfully converted temps to BCD
 //	V1.1: 3/11/2025 - working temperature comparison and output
 //	V1.2: 3/11/2025 - fixed the contReg
+//	V1.3: 3/11/2025 - fixed  2's complement for calculating BCD of meas
 //-----------------------------
 
 ;#include ".\myConfigFile.inc"
@@ -69,7 +70,7 @@ measTempL   equ	    0x70
     MOVLW	measTempInput
     MOVWF	0x25
     BTFSC	0x25, 7		; use 2's complement if meas is negative
-    COMF	0x25, 1
+    NEGF	0x25, 1
 _measTempToBCDH:		; subtract 100 until negative to get high digit
     MOVLW	100	
     SUBWF	0x25, 0
@@ -108,6 +109,7 @@ _refTempToBCDL:
     MOVFF	0x25, refTempL	; the remainder will be just the ones digit
 
     CLRF	0x25
+    
 // comparing measured and reference temps
     BTFSC	measTemp, 7	; if the meas temp is negative, will heat
     BRA		_heat
