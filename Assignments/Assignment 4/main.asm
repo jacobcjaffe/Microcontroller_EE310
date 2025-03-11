@@ -17,6 +17,7 @@
 // Versions:
 //  	V1.0: 3/11/2025 - first version, successfully converted temps to BCD
 //	V1.1: 3/11/2025 - working temperature comparison and output
+//	V1.2: 3/11/2025 - fixed the contReg
 //-----------------------------
 
 ;#include ".\myConfigFile.inc"
@@ -25,8 +26,8 @@
 ;---------------------
 ; Program Inputs
 ;---------------------
-#define	    measTempInput	45 ; this is the measured temperature input
-#define	    refTempInput	25; this is the reference temperature input
+#define	    measTempInput	-5   ; this is the measured temperature input
+#define	    refTempInput	15  ; this is the reference temperature input
  
 ;---------------------
 ; Program Constants
@@ -112,26 +113,26 @@ _refTempToBCDL:
     BRA		_heat
     
     MOVLW	measTempInput
-    SUBWF	refTemp
+    SUBWF	refTemp, 0
     BN		_cool		; if meas temp > ref temp, cool
     BZ		_turnOff	; if meas temp == ref temp, turn off cool and heat
-
-_heat:				; if meas temp < ref temp, heat
+				; else, meas temp < ref temp, heat
+_heat:				; heat, set contReg to 2
     MOVLW	0x01
     MOVWF	contReg
     BSF		LED_HOT
     BRA		_sleep
-_cool:
+_cool:				; cool, set contReg to 1
     MOVLW	0x02
     MOVWF	contReg
     BSF		LED_COOL
     BRA		_sleep
-_turnOff:
+_turnOff:			; display nothing, set contReg to 0
     CLRF	contReg
     CLRF	PORTD
 
 _sleep:
-    SLEEP
+     SLEEP
 END
 
 
