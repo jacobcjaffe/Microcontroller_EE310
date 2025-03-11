@@ -19,9 +19,9 @@
 //	V1.1: 3/11/2025 - working temperature comparison and output
 //	V1.2: 3/11/2025 - fixed the contReg
 //	V1.3: 3/11/2025 - fixed  2's complement for calculating BCD of meas
+//	V1.4: 3/11/2025 - cleaned up comments
 //-----------------------------
 
-;#include ".\myConfigFile.inc"
 #include <xc.inc>
 
 ;---------------------
