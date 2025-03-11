@@ -1,22 +1,22 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- C:\Users\Jacob\AppData\Local\Temp\xcAsa70.\driver_tmp_3.o
- -Odist/default/debug\Assignment_4.debug.hex
- -logfile=dist/default/debug\Assignment_4.debug.hxl
+ C:\Users\Jacob\AppData\Local\Temp\xcAslfo.\driver_tmp_3.o
+ -Odist/default/production\Assignment_4.production.hex
+ -logfile=dist/default/production\Assignment_4.production.hxl
  -addressing=1
  -break=300000
 
 ### Memory Usage ###
  Input file ranges:
-  20h - 97h		(C:\Users\Jacob\AppData\Local\Temp\xcAsa70.\driver_tmp_3.o)
+  20h - 97h		(C:\Users\Jacob\AppData\Local\Temp\xcAslfo.\driver_tmp_3.o)
  Unused ranges:
   0h - 1Fh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (C:\Users\Jacob\AppData\Local\Temp\xcAsa70.\driver_tmp_3.o)
+  H1 = Input file             (C:\Users\Jacob\AppData\Local\Temp\xcAslfo.\driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------

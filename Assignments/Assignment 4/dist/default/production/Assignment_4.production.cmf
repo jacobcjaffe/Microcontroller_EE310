@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$build/default/debug/main.o
+$build/default/production/main.o
 absdata - 0 20 20 78 1 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -63,7 +63,7 @@ MEDIUMCONST 1000-FFFF 1
 # are in ascending order of addresses.
 # All other numeric values are in decimal.
 %LINETAB
-$build/default/debug/main.o
+$build/default/production/main.o
 20 absdata ABS >62:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 4\main.asm
 22 absdata ABS >63:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 4\main.asm
 24 absdata ABS >64:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 4\main.asm
@@ -155,7 +155,7 @@ __Hudata_bank12 0 0 ABS 0 udata_bank12 -
 __Hudata_bank13 0 0 ABS 0 udata_bank13 -
 __Hudata_bank14 0 0 ABS 0 udata_bank14 -
 __Hudata_bank15 0 0 ABS 0 udata_bank15 -
-isa$xinst 0 0 ABS 0 - build/default/debug/main.o
+isa$xinst 0 0 ABS 0 - build/default/production/main.o
 __Hedata 0 0 ABS 0 edata -
 __Hudata 0 0 ABS 0 udata -
 __Ledata 0 0 ABS 0 edata -
@@ -174,7 +174,7 @@ __Ludata_bank12 0 0 ABS 0 udata_bank12 -
 __Ludata_bank13 0 0 ABS 0 udata_bank13 -
 __Ludata_bank14 0 0 ABS 0 udata_bank14 -
 __Ludata_bank15 0 0 ABS 0 udata_bank15 -
-isa$std 1 0 ABS 0 - build/default/debug/main.o
+isa$std 1 0 ABS 0 - build/default/production/main.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -

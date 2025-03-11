@@ -60,6 +60,8 @@ measTempL   equ	    0x70
     
     ORG         0x20            ; begin code at 0x20 in program memory
     MOVLW	0xFF		; set port D as output
+    MOVLW	0x00		; clear port D
+    MOVWF	PORTD
     MOVWF	TRISD,0
     MOVLW	measTempInput	; place temperature inputs into data memory
     MOVWF	measTemp, 0
