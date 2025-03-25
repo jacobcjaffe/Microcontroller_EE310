@@ -56,8 +56,9 @@ FOURTEEN	equ	01111001B
 FIFTEEN		equ	01110001B
 
 // setup values for the delay loop
-Inner_loop  equ 175
-Outer_loop  equ 230
+Inner_loop  equ 200
+Outer_loop  equ 200
+Third_loop  equ	3
 
 // setup registers for implementing the delay loop
 REG10		equ	0x0A
@@ -112,18 +113,20 @@ _initialization:
     MOVWF	POSTINC0
     MOVLW	0x00
     MOVWF	FSR0L
+    CALL	_displayZero
     
 _main:
-    // if first row is set, check the column being pressed, otherwise loop back
-    BTFSS	PORTC, 0
-    BRA		_main
-    // check if first column is set for input "1"
-    BTFSC	PORTC, 1
-    CALL	_increment
-    BTFSC	PORTC, 2
-    CALL	_decrement
+    // set first row high
+    
+    BSF		PORTC, 2
+    // check each column to see if "1", "2", or "3" is high
     BTFSC	PORTC, 3
+    CALL	_increment  
+    BTFSC	PORTC, 4
+    CALL	_decrement
+    BTFSC	PORTC, 5
     CALL	_displayZero
+    
     BRA         _main
     
 // delay   
@@ -132,13 +135,17 @@ _loopDelay:
     MOVWF       REG10
     MOVLW       Outer_loop
     MOVWF       REG11
+    MOVLW	Third_loop
+    MOVWF	REG12
 _loop1:
     DECF        REG10,1
     BNZ         _loop1
     MOVLW       Inner_loop
     MOVWF       REG10
-    DECF        REG11,1 
+    DECF        REG11,1	    
     BNZ         _loop1
+    MOVLW	Outer_loop
+    MOVWF	REG11
     DECF	REG12,1
     BNZ		_loop1
     RETURN
@@ -168,8 +175,8 @@ _setupInputPortC:
     BANKSEL	ANSELC
     CLRF	ANSELC
     BANKSEL	TRISC
-    // sets port C as output
-    MOVLW	0xFF
+    // sets port C as input with port 2 as input
+    MOVLW	11111011B
     MOVWF	TRISC 
     RETURN    
     
@@ -178,13 +185,16 @@ _increment:
     // delay
     CALL	_loopDelay
     // if display is at "F", go back to "0"
-    BTFSS	FSR0L, 1
-    GOTO	_displayNext
-    MOVLW	0x00
+    MOVFF	FSR0L, WREG
+    SUBLW	0x0F
+    BNZ		_displayNext
+    MOVLW	0xFF
     MOVWF	FSR0L
+    MOVLW	0x00
+    MOVWF	FSR0H
 // display the next value by writing to output, Latch D
 _displayNext:
-    MOVLW	POSTINC0
+    MOVFF	PREINC0, WREG
     MOVWF	LATD
     RETURN
     
@@ -192,15 +202,19 @@ _displayNext:
 _decrement:
     // delay
     CALL	_loopDelay
-    // if display is at "0", go back to "0"
-    MOVWF	0x00
-    ADDWF	FSR0L
+    // if display is at "0", go back to "F"
+    MOVFF	FSR0L, WREG
+    SUBLW	0x00
     BNZ		_displayPrev
-    MOVLW	0x0F
+    MOVLW	0x10
     MOVWF	FSR0L
+    MOVLW	0x01
+    MOVWF	FSR0H
 // display the previous value by writing to output, Latch D
 _displayPrev:
-    MOVLW	POSTDEC0
+    MOVLW	0x01
+    SUBWF	FSR0L
+    MOVFF	INDF0, WREG
     MOVWF	LATD
     RETURN
 
@@ -209,8 +223,8 @@ _displayZero:
     // delay
     CALL	_loopDelay
     MOVLW	0x00
-    MOVWF	LATD
     MOVWF	FSR0L
+    MOVFF	INDF0, LATD
     RETURN
     END
 

@@ -32785,8 +32785,9 @@ FOURTEEN equ 01111001B
 FIFTEEN equ 01110001B
 
 
-Inner_loop equ 175
-Outer_loop equ 230
+Inner_loop equ 200
+Outer_loop equ 200
+Third_loop equ 3
 
 
 REG10 equ 0x0A
@@ -32841,18 +32842,20 @@ _initialization:
     MOVWF POSTINC0
     MOVLW 0x00
     MOVWF FSR0L
+    CALL _displayZero
 
 _main:
 
-    BTFSS PORTC, 0
-    BRA _main
 
-    BTFSC PORTC, 1
-    CALL _increment
-    BTFSC PORTC, 2
-    CALL _decrement
+    BSF PORTC, 2
+
     BTFSC PORTC, 3
+    CALL _increment
+    BTFSC PORTC, 4
+    CALL _decrement
+    BTFSC PORTC, 5
     CALL _displayZero
+
     BRA _main
 
 
@@ -32861,6 +32864,8 @@ _loopDelay:
     MOVWF REG10
     MOVLW Outer_loop
     MOVWF REG11
+    MOVLW Third_loop
+    MOVWF REG12
 _loop1:
     DECF REG10,1
     BNZ _loop1
@@ -32868,6 +32873,8 @@ _loop1:
     MOVWF REG10
     DECF REG11,1
     BNZ _loop1
+    MOVLW Outer_loop
+    MOVWF REG11
     DECF REG12,1
     BNZ _loop1
     RETURN
@@ -32898,7 +32905,7 @@ _setupInputPortC:
     CLRF ANSELC
     BANKSEL TRISC
 
-    MOVLW 0xFF
+    MOVLW 11111011B
     MOVWF TRISC
     RETURN
 
@@ -32907,13 +32914,16 @@ _increment:
 
     CALL _loopDelay
 
-    BTFSS FSR0L, 1
-    GOTO _displayNext
-    MOVLW 0x00
+    MOVFF FSR0L, WREG
+    SUBLW 0x0F
+    BNZ _displayNext
+    MOVLW 0xFF
     MOVWF FSR0L
+    MOVLW 0x00
+    MOVWF FSR0H
 
 _displayNext:
-    MOVLW POSTINC0
+    MOVFF PREINC0, WREG
     MOVWF LATD
     RETURN
 
@@ -32922,14 +32932,18 @@ _decrement:
 
     CALL _loopDelay
 
-    MOVWF 0x00
-    ADDWF FSR0L
+    MOVFF FSR0L, WREG
+    SUBLW 0x00
     BNZ _displayPrev
-    MOVLW 0x0F
+    MOVLW 0x10
     MOVWF FSR0L
+    MOVLW 0x01
+    MOVWF FSR0H
 
 _displayPrev:
-    MOVLW POSTDEC0
+    MOVLW 0x01
+    SUBWF FSR0L
+    MOVFF INDF0, WREG
     MOVWF LATD
     RETURN
 
@@ -32938,7 +32952,7 @@ _displayZero:
 
     CALL _loopDelay
     MOVLW 0x00
-    MOVWF LATD
     MOVWF FSR0L
+    MOVFF INDF0, LATD
     RETURN
     END

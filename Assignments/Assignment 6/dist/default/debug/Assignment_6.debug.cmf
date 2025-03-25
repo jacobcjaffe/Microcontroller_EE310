@@ -12,7 +12,7 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $build/default/debug/main.o
-absdata - 0 0 0 DE 1 1
+absdata - 0 0 0 108 1 1
 config CONFIG 4 300000 300000 A 1 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -32,17 +32,17 @@ BANK6 600-6FF 1
 BANK7 700-7FF 1
 BANK8 800-8FF 1
 BANK9 900-9FF 1
-CONST DE-FFFF 1
+CONST 108-FFFF 1
 IDLOC 200000-20000F 1
 SMALLCONST 1000-FFFF 1
-CODE DE-FFFF 1
+CODE 108-FFFF 1
 BANK10 A00-AFF 1
 BANK11 B00-BFF 1
 BANK12 C00-CFF 1
 BANK13 D00-DFF 1
 BANK14 E00-EFF 1
 BANK15 F00-FFF 1
-BIGRAM DE-FFF 1
+BIGRAM 108-FFF 1
 BIGSFR 3800-3FFF 1
 COMRAM 0-5F 1
 EEDATA 310000-3103FF 1
@@ -61,110 +61,121 @@ MEDIUMCONST 1000-FFFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $build/default/debug/main.o
-0 absdata ABS >73:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-2 absdata ABS >74:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-4 absdata ABS >77:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-6 absdata ABS >78:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-8 absdata ABS >79:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-A absdata ABS >80:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-C absdata ABS >81:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-E absdata ABS >82:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-10 absdata ABS >83:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-12 absdata ABS >84:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-14 absdata ABS >85:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-16 absdata ABS >86:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-18 absdata ABS >87:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-1A absdata ABS >88:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-1C absdata ABS >89:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-1E absdata ABS >90:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-20 absdata ABS >91:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-22 absdata ABS >92:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-24 absdata ABS >93:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-26 absdata ABS >94:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-28 absdata ABS >95:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-2A absdata ABS >96:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-2C absdata ABS >97:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-2E absdata ABS >98:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-30 absdata ABS >99:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-32 absdata ABS >100:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-34 absdata ABS >101:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-36 absdata ABS >102:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-38 absdata ABS >103:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-3A absdata ABS >104:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-3C absdata ABS >105:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-3E absdata ABS >106:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-40 absdata ABS >107:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-42 absdata ABS >108:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-44 absdata ABS >109:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-46 absdata ABS >110:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-48 absdata ABS >111:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-4A absdata ABS >112:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-4C absdata ABS >113:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-4E absdata ABS >114:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-50 absdata ABS >118:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-52 absdata ABS >119:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+0 absdata ABS >74:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+2 absdata ABS >75:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+4 absdata ABS >78:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+6 absdata ABS >79:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+8 absdata ABS >80:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+A absdata ABS >81:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+C absdata ABS >82:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+E absdata ABS >83:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+10 absdata ABS >84:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+12 absdata ABS >85:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+14 absdata ABS >86:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+16 absdata ABS >87:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+18 absdata ABS >88:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+1A absdata ABS >89:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+1C absdata ABS >90:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+1E absdata ABS >91:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+20 absdata ABS >92:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+22 absdata ABS >93:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+24 absdata ABS >94:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+26 absdata ABS >95:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+28 absdata ABS >96:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+2A absdata ABS >97:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+2C absdata ABS >98:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+2E absdata ABS >99:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+30 absdata ABS >100:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+32 absdata ABS >101:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+34 absdata ABS >102:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+36 absdata ABS >103:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+38 absdata ABS >104:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+3A absdata ABS >105:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+3C absdata ABS >106:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+3E absdata ABS >107:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+40 absdata ABS >108:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+42 absdata ABS >109:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+44 absdata ABS >110:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+46 absdata ABS >111:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+48 absdata ABS >112:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+4A absdata ABS >113:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+4C absdata ABS >114:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+4E absdata ABS >115:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+50 absdata ABS >116:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
 54 absdata ABS >121:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-56 absdata ABS >122:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-5A absdata ABS >123:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-5C absdata ABS >124:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-60 absdata ABS >125:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-62 absdata ABS >126:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-66 absdata ABS >127:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-68 absdata ABS >131:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-6A absdata ABS >132:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-6C absdata ABS >133:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-6E absdata ABS >134:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-70 absdata ABS >136:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-72 absdata ABS >137:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-74 absdata ABS >138:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-76 absdata ABS >139:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-78 absdata ABS >140:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-7A absdata ABS >141:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-7C absdata ABS >142:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-7E absdata ABS >143:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-80 absdata ABS >144:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-82 absdata ABS >149:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-84 absdata ABS >150:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-86 absdata ABS >151:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-88 absdata ABS >152:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-8A absdata ABS >153:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-8C absdata ABS >154:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-8E absdata ABS >155:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-90 absdata ABS >157:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-92 absdata ABS >158:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-94 absdata ABS >159:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-96 absdata ABS >164:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-98 absdata ABS >165:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-9A absdata ABS >166:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-9C absdata ABS >167:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-9E absdata ABS >168:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-A0 absdata ABS >169:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-A2 absdata ABS >170:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-A4 absdata ABS >172:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-A6 absdata ABS >173:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-A8 absdata ABS >174:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-AA absdata ABS >179:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-AE absdata ABS >181:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-B0 absdata ABS >182:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-B4 absdata ABS >183:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-B6 absdata ABS >184:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-B8 absdata ABS >187:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-BA absdata ABS >188:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-BC absdata ABS >189:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-BE absdata ABS >194:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-C2 absdata ABS >196:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-C4 absdata ABS >197:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-C6 absdata ABS >198:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-C8 absdata ABS >199:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-CA absdata ABS >200:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-CC absdata ABS >203:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-CE absdata ABS >204:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-D0 absdata ABS >205:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-D2 absdata ABS >210:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-D6 absdata ABS >211:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-D8 absdata ABS >212:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-DA absdata ABS >213:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
-DC absdata ABS >214:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+56 absdata ABS >123:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+58 absdata ABS >124:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+5C absdata ABS >125:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+5E absdata ABS >126:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+62 absdata ABS >127:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+64 absdata ABS >128:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+68 absdata ABS >130:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+6A absdata ABS >134:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+6C absdata ABS >135:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+6E absdata ABS >136:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+70 absdata ABS >137:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+72 absdata ABS >138:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+74 absdata ABS >139:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+76 absdata ABS >141:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+78 absdata ABS >142:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+7A absdata ABS >143:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+7C absdata ABS >144:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+7E absdata ABS >145:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+80 absdata ABS >146:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+82 absdata ABS >147:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+84 absdata ABS >148:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+86 absdata ABS >149:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+88 absdata ABS >150:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+8A absdata ABS >151:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+8C absdata ABS >156:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+8E absdata ABS >157:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+90 absdata ABS >158:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+92 absdata ABS >159:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+94 absdata ABS >160:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+96 absdata ABS >161:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+98 absdata ABS >162:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+9A absdata ABS >164:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+9C absdata ABS >165:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+9E absdata ABS >166:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+A0 absdata ABS >171:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+A2 absdata ABS >172:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+A4 absdata ABS >173:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+A6 absdata ABS >174:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+A8 absdata ABS >175:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+AA absdata ABS >176:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+AC absdata ABS >177:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+AE absdata ABS >179:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+B0 absdata ABS >180:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+B2 absdata ABS >181:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+B4 absdata ABS >186:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+B8 absdata ABS >188:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+BE absdata ABS >189:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+C0 absdata ABS >190:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+C2 absdata ABS >191:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+C4 absdata ABS >192:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+C6 absdata ABS >193:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+C8 absdata ABS >194:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+CA absdata ABS >197:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+D0 absdata ABS >198:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+D2 absdata ABS >199:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+D4 absdata ABS >204:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+D8 absdata ABS >206:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+DE absdata ABS >207:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+E0 absdata ABS >208:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+E2 absdata ABS >209:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+E4 absdata ABS >210:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+E6 absdata ABS >211:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+E8 absdata ABS >212:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+EA absdata ABS >215:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+EC absdata ABS >216:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+EE absdata ABS >217:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+F4 absdata ABS >218:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+F6 absdata ABS >219:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+F8 absdata ABS >224:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+FC absdata ABS >225:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+FE absdata ABS >226:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+100 absdata ABS >227:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
+106 absdata ABS >228:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 6\main.asm
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -177,7 +188,7 @@ DC absdata ABS >214:C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assign
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__Hspace_0 DE 0 ABS 0 - -
+__Hspace_0 108 0 ABS 0 - -
 __Hspace_1 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 60000A 0 ABS 0 - -
@@ -209,7 +220,7 @@ __Hcode 0 0 ABS 0 code -
 __Hdata 0 0 ABS 0 data -
 __Lcode 0 0 ABS 0 code -
 __Ldata 0 0 ABS 0 data -
-__Habsdata DE 0 ABS 0 absdata -
+__Habsdata 108 0 ABS 0 absdata -
 __S0 0 0 ABS 0 - -
 __S1 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
