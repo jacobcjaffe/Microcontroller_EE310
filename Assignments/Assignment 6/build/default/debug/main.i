@@ -32786,7 +32786,7 @@ FIFTEEN equ 01110001B
 
 
 Inner_loop equ 200
-Outer_loop equ 200
+Outer_loop equ 150
 Third_loop equ 3
 
 
