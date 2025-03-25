@@ -57,7 +57,7 @@ FIFTEEN		equ	01110001B
 
 // setup values for the delay loop
 Inner_loop  equ 200
-Outer_loop  equ 200
+Outer_loop  equ 150
 Third_loop  equ	3
 
 // setup registers for implementing the delay loop
@@ -175,7 +175,7 @@ _setupInputPortC:
     BANKSEL	ANSELC
     CLRF	ANSELC
     BANKSEL	TRISC
-    // sets port C as input with port 2 as input
+    // sets port C as input with port 2 as high for the first row on numpad
     MOVLW	11111011B
     MOVWF	TRISC 
     RETURN    
