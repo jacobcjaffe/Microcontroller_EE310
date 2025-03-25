@@ -8,7 +8,7 @@
 ;---------------------
 ; Title: Numpad Counter
 ;---------------------
-; Program Details: The purpose of this program is to change a counter shown by
+; Purpose: The purpose of this program is to change a counter shown by
 ; a 7 segment display with a numpad. When "1" is pressed on a numpad. It will
 ; decrement if "2" is pressed on the numpad, and it will reset to 0 if "3" is
 ; pressed. It goes through the digits "0, 1, 2, 3 ... 9, A, B, ... F" and it
@@ -18,13 +18,17 @@
 ; Outputs: digits on the 7 segment display
 ; Setup: The Curiosity Board, a 7 segment display, a numpad, 11 resistors, and
 ; wires.
+; Computer/OS: For pic18F47K42
 ; Date: February 24, 2025
-; File Dependencies / Libraries: It is required to include the
-; myConfigFile.inc in the Header Folder
+; File Dependencies / Libraries: myConfigFile.inc as a header
 ; Compiler: xc8 v3.0
+; Compile line commands:
+; make -f nbproject/Makefile-default.mk SUBPROJECTS= .build-conf
+; make -f nbproject/Makefile-default.mk dist/default/debug/Assignment_6.debug.hex
 ; Author: Jaocb Jaffe
 ; Versions:
-; V1.0: Original
+; v1.0: Original
+; v1.1: Completed increment and decrement functions
 ; --------------------
 
 ;---------------------
@@ -89,7 +93,7 @@
 
 
 ; config statements should precede project file includes.
-# 27 "main.asm" 2
+# 31 "main.asm" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.inc" 1 3
 
 
@@ -32753,7 +32757,7 @@ stk_offset SET 0
 auto_size SET 0
 ENDM
 # 6 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.inc" 2 3
-# 28 "main.asm" 2
+# 32 "main.asm" 2
 
 ;---------------------
 ; Program Inputs
@@ -32763,7 +32767,7 @@ ENDM
 ; Program Constants
 ;---------------------
 
-ZER equ 0x01
+ZER equ 00111111B
 ONE equ 00000110B
 TWO equ 01011011B
 THREE equ 01001111B
@@ -32835,12 +32839,23 @@ _initialization:
     MOVWF POSTINC0
     MOVLW FIFTEEN
     MOVWF POSTINC0
+    MOVLW 0x00
+    MOVWF FSR0L
 
 _main:
-    CALL _loopDelay ; we can use RCALL
+
+    BTFSS PORTC, 0
     BRA _main
 
-;-----The Delay Subroutine
+    BTFSC PORTC, 1
+    CALL _increment
+    BTFSC PORTC, 2
+    CALL _decrement
+    BTFSC PORTC, 3
+    CALL _displayZero
+    BRA _main
+
+
 _loopDelay:
     MOVLW Inner_loop
     MOVWF REG10
@@ -32849,7 +32864,7 @@ _loopDelay:
 _loop1:
     DECF REG10,1
     BNZ _loop1
-    MOVLW Inner_loop ; Re-initialize the inner loop for when the outer loop decrements.
+    MOVLW Inner_loop
     MOVWF REG10
     DECF REG11,1
     BNZ _loop1
@@ -32859,27 +32874,71 @@ _loop1:
 
 
 _setupOutputPortD:
-    BANKSEL PORTD ;
-    CLRF PORTD ;Init PORTA
-    BANKSEL LATD ;Data Latch
-    CLRF LATD ;
-    BANKSEL ANSELD ;
-    CLRF ANSELD ;digital I/O
-    BANKSEL TRISD ;
-    MOVLW 0 ; set Port D as an output
-    MOVWF TRISD ;and set ((PORTD) and 0FFh), 0, a as ouput
+
+    BANKSEL PORTD
+    CLRF PORTD
+    BANKSEL LATD
+    CLRF LATD
+    BANKSEL ANSELD
+    CLRF ANSELD
+    BANKSEL TRISD
+
+    MOVLW 0
+    MOVWF TRISD
     RETURN
 
+
 _setupInputPortC:
+
     BANKSEL PORTC
-    CLRF PORTC ;Init PORTC
-    BANKSEL LATC ;Data Latch
-    CLRF LATC ;
-    BANKSEL ANSELC ;
-    CLRF ANSELC ;digital I/O
+    CLRF PORTC
+    BANKSEL LATC
+    CLRF LATC
+    BANKSEL ANSELC
+    CLRF ANSELC
     BANKSEL TRISC
-    MOVLW 0xFF ; set Port C as output
+
+    MOVLW 0xFF
     MOVWF TRISC
     RETURN
 
+
+_increment:
+
+    CALL _loopDelay
+
+    BTFSS FSR0L, 1
+    GOTO _displayNext
+    MOVLW 0x00
+    MOVWF FSR0L
+
+_displayNext:
+    MOVLW POSTINC0
+    MOVWF LATD
+    RETURN
+
+
+_decrement:
+
+    CALL _loopDelay
+
+    MOVWF 0x00
+    ADDWF FSR0L
+    BNZ _displayPrev
+    MOVLW 0x0F
+    MOVWF FSR0L
+
+_displayPrev:
+    MOVLW POSTDEC0
+    MOVWF LATD
+    RETURN
+
+
+_displayZero:
+
+    CALL _loopDelay
+    MOVLW 0x00
+    MOVWF LATD
+    MOVWF FSR0L
+    RETURN
     END

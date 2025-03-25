@@ -1,7 +1,7 @@
 ;---------------------
 ; Title: Numpad Counter
 ;---------------------
-; Program Details: The purpose of this program is to change a counter shown by 
+; Purpose: The purpose of this program is to change a counter shown by 
 ; a 7 segment display with a numpad. When "1" is pressed on a numpad. It will 
 ; decrement if "2" is pressed on the numpad, and it will reset to 0 if "3" is 
 ; pressed. It goes through the digits "0, 1, 2, 3 ... 9, A, B, ... F" and it
@@ -10,14 +10,18 @@
 ; Inputs: "1", "2", or "3" on the numpad. 
 ; Outputs: digits on the 7 segment display
 ; Setup: The Curiosity Board, a 7 segment display, a numpad, 11 resistors, and 
-;   wires.   
+;   wires.
+; Computer/OS: For pic18F47K42
 ; Date: February 24, 2025
-; File Dependencies / Libraries: It is required to include the 
-;   myConfigFile.inc in the Header Folder
+; File Dependencies / Libraries: myConfigFile.inc as a header
 ; Compiler: xc8 v3.0
+;   Compile line commands: 
+;   make -f nbproject/Makefile-default.mk SUBPROJECTS= .build-conf
+;   make  -f nbproject/Makefile-default.mk dist/default/debug/Assignment_6.debug.hex
 ; Author: Jaocb Jaffe
 ; Versions:
-;       V1.0: Original
+;       v1.0: Original
+;	v1.1: Completed increment and decrement functions
 ; --------------------
     
 ;---------------------
@@ -33,8 +37,8 @@
 ;---------------------
 ; Program Constants
 ;---------------------
-// these are the hex representations of the digit on the seven segment display
-ZER		equ	0x01//00111111b
+// these are the binary representations of the digit on the seven segment
+ZER		equ	00111111B
 ONE		equ	00000110B
 TWO		equ	01011011B
 THREE		equ	01001111B
@@ -70,48 +74,59 @@ _initialization:
     RCALL   _setupInputPortC
     // store the representations for the digits on seven segment in
     // 0x0100 through 0x010F
-    MOVLW   0x01
-    MOVWF   FSR0H, 0
-    MOVLW   0x00
-    MOVWF   FSR0L, 0
-    MOVLW   ZER
-    MOVWF   POSTINC0
-    MOVLW   ONE
-    MOVWF   POSTINC0
-    MOVLW   TWO
-    MOVWF   POSTINC0
-    MOVLW   THREE
-    MOVWF   POSTINC0
-    MOVLW   FOUR
-    MOVWF   POSTINC0
-    MOVLW   FIVE
-    MOVWF   POSTINC0
-    MOVLW   SIX
-    MOVWF   POSTINC0
-    MOVLW   SEVEN
-    MOVWF   POSTINC0
-    MOVLW   EIGHT
-    MOVWF   POSTINC0
-    MOVLW   NINE
-    MOVWF   POSTINC0
-    MOVLW   TEN
-    MOVWF   POSTINC0
-    MOVLW   ELEVEN
-    MOVWF   POSTINC0
-    MOVLW   TWELVE
-    MOVWF   POSTINC0
-    MOVLW   THIRTEEN
-    MOVWF   POSTINC0
-    MOVLW   FOURTEEN
-    MOVWF   POSTINC0
-    MOVLW   FIFTEEN
-    MOVWF   POSTINC0
+    MOVLW	0x01
+    MOVWF	FSR0H, 0
+    MOVLW	0x00
+    MOVWF	FSR0L, 0
+    MOVLW	ZER
+    MOVWF	POSTINC0
+    MOVLW	ONE
+    MOVWF	POSTINC0
+    MOVLW	TWO
+    MOVWF	POSTINC0
+    MOVLW	THREE
+    MOVWF	POSTINC0
+    MOVLW	FOUR
+    MOVWF	POSTINC0
+    MOVLW	FIVE
+    MOVWF	POSTINC0
+    MOVLW	SIX
+    MOVWF	POSTINC0
+    MOVLW	SEVEN
+    MOVWF	POSTINC0
+    MOVLW	EIGHT
+    MOVWF	POSTINC0
+    MOVLW	NINE
+    MOVWF	POSTINC0
+    MOVLW	TEN
+    MOVWF	POSTINC0
+    MOVLW	ELEVEN
+    MOVWF	POSTINC0
+    MOVLW	TWELVE
+    MOVWF	POSTINC0
+    MOVLW	THIRTEEN
+    MOVWF	POSTINC0
+    MOVLW	FOURTEEN
+    MOVWF	POSTINC0
+    MOVLW	FIFTEEN
+    MOVWF	POSTINC0
+    MOVLW	0x00
+    MOVWF	FSR0L
     
 _main:
-    CALL	_loopDelay ; we can use RCALL
+    // if first row is set, check the column being pressed, otherwise loop back
+    BTFSS	PORTC, 0
+    BRA		_main
+    // check if first column is set for input "1"
+    BTFSC	PORTC, 1
+    CALL	_increment
+    BTFSC	PORTC, 2
+    CALL	_decrement
+    BTFSC	PORTC, 3
+    CALL	_displayZero
     BRA         _main
     
-;-----The Delay Subroutine    
+// delay   
 _loopDelay:
     MOVLW       Inner_loop
     MOVWF       REG10
@@ -120,39 +135,83 @@ _loopDelay:
 _loop1:
     DECF        REG10,1
     BNZ         _loop1
-    MOVLW       Inner_loop ; Re-initialize the inner loop for when the outer loop decrements.
+    MOVLW       Inner_loop
     MOVWF       REG10
-    DECF        REG11,1 // outer loop
+    DECF        REG11,1 
     BNZ         _loop1
     DECF	REG12,1
     BNZ		_loop1
     RETURN
 
- 
-_setupOutputPortD: // setting up Port D to output to 7 segment
-    BANKSEL	PORTD ;
-    CLRF	PORTD ;Init PORTA
-    BANKSEL	LATD ;Data Latch
-    CLRF	LATD ;
-    BANKSEL	ANSELD ;
-    CLRF	ANSELD ;digital I/O
-    BANKSEL	TRISD ;
-    MOVLW	0 ; set Port D as an output
-    MOVWF	TRISD ;and set RD0 as ouput
+// clears and sets Port D as the output
+_setupOutputPortD:
+    // clear all data in port D
+    BANKSEL	PORTD
+    CLRF	PORTD
+    BANKSEL	LATD
+    CLRF	LATD
+    BANKSEL	ANSELD
+    CLRF	ANSELD
+    BANKSEL	TRISD
+    // set port D as output
+    MOVLW	0
+    MOVWF	TRISD
     RETURN
  
+// clears and sets port C as the input
 _setupInputPortC:
+    // clears all data in port C
     BANKSEL	PORTC 
-    CLRF	PORTC ;Init PORTC
-    BANKSEL	LATC ;Data Latch
-    CLRF	LATC ;
-    BANKSEL	ANSELC ;
-    CLRF	ANSELC ;digital I/O
+    CLRF	PORTC
+    BANKSEL	LATC
+    CLRF	LATC
+    BANKSEL	ANSELC
+    CLRF	ANSELC
     BANKSEL	TRISC
-    MOVLW	0xFF ; set Port C as output
+    // sets port C as output
+    MOVLW	0xFF
     MOVWF	TRISC 
     RETURN    
     
+// increment the value displayed on 7 segment
+_increment:
+    // delay
+    CALL	_loopDelay
+    // if display is at "F", go back to "0"
+    BTFSS	FSR0L, 1
+    GOTO	_displayNext
+    MOVLW	0x00
+    MOVWF	FSR0L
+// display the next value by writing to output, Latch D
+_displayNext:
+    MOVLW	POSTINC0
+    MOVWF	LATD
+    RETURN
+    
+// decrement the value displayed on 7 segment
+_decrement:
+    // delay
+    CALL	_loopDelay
+    // if display is at "0", go back to "0"
+    MOVWF	0x00
+    ADDWF	FSR0L
+    BNZ		_displayPrev
+    MOVLW	0x0F
+    MOVWF	FSR0L
+// display the previous value by writing to output, Latch D
+_displayPrev:
+    MOVLW	POSTDEC0
+    MOVWF	LATD
+    RETURN
+
+// change display to "0"
+_displayZero:
+    // delay
+    CALL	_loopDelay
+    MOVLW	0x00
+    MOVWF	LATD
+    MOVWF	FSR0L
+    RETURN
     END
 
 
