@@ -1,143 +1,158 @@
-//-----------------------------
-// Title: Cooling System
-//-----------------------------
-// Purpose: This program emulates the behavior of a cooling system. It takes a 
-// temperature from the user, compares it to the outside reference temperature. 
-// If the reference temperature is greater, the heater is turned on, if the 
-// measured temperature is greater, the cooler is turned on, and if they're equal,
-// both the heater and cooler are turned off.
-//
-// Dependencies: NONE
-// Compiler: pic-as (v3.0)
-// Author: Jacob Jaffe
-// OUTPUTS: Port D.1 is the output for the heater, and Port D.2 is the output
-// for the cooler. 
-// INPUTS: The inputs are the macros, measuredTempInput and referenceTempInput,
-// used for the measured temperature and reference temperature respectively.  
-// Versions:
-//  	V1.0: 3/11/2025 - first version, successfully converted temps to BCD
-//	V1.1: 3/11/2025 - working temperature comparison and output
-//	V1.2: 3/11/2025 - fixed the contReg
-//	V1.3: 3/11/2025 - fixed  2's complement for calculating BCD of meas
-//	V1.4: 3/11/2025 - cleaned up comments
-//-----------------------------
-
+;---------------------
+; Title: Numpad Counter
+;---------------------
+; Program Details: The purpose of this program is to change a counter shown by 
+; a 7 segment display with a numpad. When "1" is pressed on a numpad. It will 
+; decrement if "2" is pressed on the numpad, and it will reset to 0 if "3" is 
+; pressed. It goes through the digits "0, 1, 2, 3 ... 9, A, B, ... F" and it
+; will loop if it reaches either end.
+;
+; Inputs: "1", "2", or "3" on the numpad. 
+; Outputs: digits on the 7 segment display
+; Setup: The Curiosity Board, a 7 segment display, a numpad, 11 resistors, and 
+;   wires.   
+; Date: February 24, 2025
+; File Dependencies / Libraries: It is required to include the 
+;   myConfigFile.inc in the Header Folder
+; Compiler: xc8 v3.0
+; Author: Jaocb Jaffe
+; Versions:
+;       V1.0: Original
+; --------------------
+    
+;---------------------
+; Initialization
+;---------------------
+#include "./myConfigFile.inc"
 #include <xc.inc>
 
 ;---------------------
 ; Program Inputs
 ;---------------------
-#define	    measTempInput	11   ; this is the measured temperature input
-#define	    refTempInput	11  ; this is the reference temperature input
  
 ;---------------------
 ; Program Constants
 ;---------------------
-REG10	    equ     0x10
-REG11	    equ     0x11
-REG01	    equ     0x01
-refTemp	    equ	    0x20    ; data memory location of reference temperature
-measTemp    equ	    0x21    ; data memory location of measured temperature
-contReg	    equ	    0x22    ; data memory location of the contReg
-refTempH    equ	    0x62    ; The 3 digits for the BCD of the ref temp
-refTempM    equ	    0x61    
-refTempL    equ	    0x60
-measTempH   equ	    0x72    ; The 3 digits for the BCD of the meas temp
-measTempM   equ	    0x71
-measTempL   equ	    0x70
+// these are the hex representations of the digit on the seven segment display
+ZER		equ	0x01//00111111b
+ONE		equ	00000110B
+TWO		equ	01011011B
+THREE		equ	01001111B
+FOUR		equ	01100110B
+FIVE		equ	01101101B
+SIX		equ	01111101B
+SEVEN		equ	00000111B
+EIGHT		equ	01111111B
+NINE		equ	01101111B
+TEN		equ	01110111B
+ELEVEN		equ	01111111B
+TWELVE		equ	00111001B
+THIRTEEN	equ	00111111B
+FOURTEEN	equ	01111001B
+FIFTEEN		equ	01110001B
 
-;---------------------
-; Definitions
-;---------------------
-#define SWITCH		LATD,2  
-#define LED_HOT		PORTD,1
-#define LED_COOL	PORTD,2
+// setup values for the delay loop
+Inner_loop  equ 175
+Outer_loop  equ 230
 
+// setup registers for implementing the delay loop
+REG10		equ	0x0A
+REG11		equ	0x0B
+REG12		equ	0x0C
 ;---------------------
 ; Main Program
 ;---------------------
-    PSECT absdata,abs,ovrld        
+    PSECT absdata,abs,ovrld        ; Do not change
     
-    ORG         0x20            ; begin code at 0x20 in program memory
-    MOVLW	0xFF		; set port D as output
-    MOVLW	0x00		; clear port D
-    MOVWF	PORTD
-    MOVWF	TRISD,0
-    MOVLW	measTempInput	; place temperature inputs into data memory
-    MOVWF	measTemp, 0
-    MOVLW	refTempInput
-    MOVWF	refTemp, 0
-
-// Converting measTemp to BCD			
-    MOVLW	measTempInput
-    MOVWF	0x25
-    BTFSC	0x25, 7		; use 2's complement if meas is negative
-    NEGF	0x25, 1
-_measTempToBCDH:		; subtract 100 until negative to get high digit
-    MOVLW	100	
-    SUBWF	0x25, 0
-    BN		_measTempToBCDM	
-    MOVWF	0x25
-    INCF	measTempH
-    BRA		_measTempToBCDH
-_measTempToBCDM:		; subtract 10 until negative to get medium digit
-    MOVLW	10
-    SUBWF	0x25, 0
-    BN		_measTempToBCDL	
-    MOVWF	0x25
-    INCF	measTempM
-    BRA		_measTempToBCDM
-_measTempToBCDL:
-    MOVFF	0x25, measTempL	; the remainder will be just the ones digit
-
-// Converting refTemp to BCD			
-    MOVLW	refTempInput
-    MOVWF	0x25
-_refTempToBCDH:			; subtract 100 until negative to get high digit
-    MOVLW	100
-    SUBWF	0x25, 0
-    BN		_refTempToBCDM	
-    MOVWF	0x25
-    INCF	refTempH
-    BRA		_refTempToBCDH
-_refTempToBCDM:			; subtract 10 until negative to get medium digit
-    MOVLW	10
-    SUBWF	0x25, 0
-    BN		_refTempToBCDL	
-    MOVWF	0x25
-    INCF	refTempM
-    BRA		_refTempToBCDM
-_refTempToBCDL:
-    MOVFF	0x25, refTempL	; the remainder will be just the ones digit
-
-    CLRF	0x25
+ 
+_initialization: 
+    RCALL   _setupOutputPortD
+    RCALL   _setupInputPortC
+    // store the representations for the digits on seven segment in
+    // 0x0100 through 0x010F
+    MOVLW   0x01
+    MOVWF   FSR0H, 0
+    MOVLW   0x00
+    MOVWF   FSR0L, 0
+    MOVLW   ZER
+    MOVWF   POSTINC0
+    MOVLW   ONE
+    MOVWF   POSTINC0
+    MOVLW   TWO
+    MOVWF   POSTINC0
+    MOVLW   THREE
+    MOVWF   POSTINC0
+    MOVLW   FOUR
+    MOVWF   POSTINC0
+    MOVLW   FIVE
+    MOVWF   POSTINC0
+    MOVLW   SIX
+    MOVWF   POSTINC0
+    MOVLW   SEVEN
+    MOVWF   POSTINC0
+    MOVLW   EIGHT
+    MOVWF   POSTINC0
+    MOVLW   NINE
+    MOVWF   POSTINC0
+    MOVLW   TEN
+    MOVWF   POSTINC0
+    MOVLW   ELEVEN
+    MOVWF   POSTINC0
+    MOVLW   TWELVE
+    MOVWF   POSTINC0
+    MOVLW   THIRTEEN
+    MOVWF   POSTINC0
+    MOVLW   FOURTEEN
+    MOVWF   POSTINC0
+    MOVLW   FIFTEEN
+    MOVWF   POSTINC0
     
-// comparing measured and reference temps
-    BTFSC	measTemp, 7	; if the meas temp is negative, will heat
-    BRA		_heat
+_main:
+    CALL	_loopDelay ; we can use RCALL
+    BRA         _main
     
-    MOVLW	measTempInput
-    SUBWF	refTemp, 0
-    BN		_cool		; if meas temp > ref temp, cool
-    BZ		_turnOff	; if meas temp == ref temp, turn off cool and heat
-				; else, meas temp < ref temp, heat
-_heat:				; heat, set contReg to 2
-    MOVLW	0x01
-    MOVWF	contReg
-    BSF		LED_HOT
-    BRA		_sleep
-_cool:				; cool, set contReg to 1
-    MOVLW	0x02
-    MOVWF	contReg
-    BSF		LED_COOL
-    BRA		_sleep
-_turnOff:			; display nothing, set contReg to 0
-    CLRF	contReg
-    CLRF	PORTD
+;-----The Delay Subroutine    
+_loopDelay:
+    MOVLW       Inner_loop
+    MOVWF       REG10
+    MOVLW       Outer_loop
+    MOVWF       REG11
+_loop1:
+    DECF        REG10,1
+    BNZ         _loop1
+    MOVLW       Inner_loop ; Re-initialize the inner loop for when the outer loop decrements.
+    MOVWF       REG10
+    DECF        REG11,1 // outer loop
+    BNZ         _loop1
+    DECF	REG12,1
+    BNZ		_loop1
+    RETURN
 
-_sleep:
-     SLEEP
-END
-
+ 
+_setupOutputPortD: // setting up Port D to output to 7 segment
+    BANKSEL	PORTD ;
+    CLRF	PORTD ;Init PORTA
+    BANKSEL	LATD ;Data Latch
+    CLRF	LATD ;
+    BANKSEL	ANSELD ;
+    CLRF	ANSELD ;digital I/O
+    BANKSEL	TRISD ;
+    MOVLW	0 ; set Port D as an output
+    MOVWF	TRISD ;and set RD0 as ouput
+    RETURN
+ 
+_setupInputPortC:
+    BANKSEL	PORTC 
+    CLRF	PORTC ;Init PORTC
+    BANKSEL	LATC ;Data Latch
+    CLRF	LATC ;
+    BANKSEL	ANSELC ;
+    CLRF	ANSELC ;digital I/O
+    BANKSEL	TRISC
+    MOVLW	0xFF ; set Port C as output
+    MOVWF	TRISC 
+    RETURN    
+    
+    END
 
 

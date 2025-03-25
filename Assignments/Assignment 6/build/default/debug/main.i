@@ -5,7 +5,91 @@
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
 # 1 "main.asm" 2
-# 25 "main.asm"
+;---------------------
+; Title: Numpad Counter
+;---------------------
+; Program Details: The purpose of this program is to change a counter shown by
+; a 7 segment display with a numpad. When "1" is pressed on a numpad. It will
+; decrement if "2" is pressed on the numpad, and it will reset to 0 if "3" is
+; pressed. It goes through the digits "0, 1, 2, 3 ... 9, A, B, ... F" and it
+; will loop if it reaches either end.
+;
+; Inputs: "1", "2", or "3" on the numpad.
+; Outputs: digits on the 7 segment display
+; Setup: The Curiosity Board, a 7 segment display, a numpad, 11 resistors, and
+; wires.
+; Date: February 24, 2025
+; File Dependencies / Libraries: It is required to include the
+; myConfigFile.inc in the Header Folder
+; Compiler: xc8 v3.0
+; Author: Jaocb Jaffe
+; Versions:
+; V1.0: Original
+; --------------------
+
+;---------------------
+; Initialization
+;---------------------
+# 1 "././myConfigFile.inc" 1
+
+;---------------------
+; Configuration Bits -Do not change
+;---------------------
+; PIC18F46K42 Configuration Bit Settings
+; Assembly source line config statements
+
+; CONFIG1L
+  CONFIG FEXTOSC = LP ; External Oscillator Selection (LP (crystal oscillator) optimized for 32.768 kHz; PFM set to low power)
+  CONFIG RSTOSC = EXTOSC ; Reset Oscillator Selection (EXTOSC operating per FEXTOSC bits (device manufacturing default))
+
+; CONFIG1H
+  CONFIG CLKOUTEN = OFF ; Clock out Enable bit (CLKOUT function is disabled)
+  CONFIG PR1WAY = ON ; PRLOCKED One-Way Set Enable bit (PRLOCK bit can be cleared and set only once)
+  CONFIG CSWEN = ON ; Clock Switch Enable bit (Writing to NOSC and NDIV is allowed)
+  CONFIG FCMEN = ON ; Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor enabled)
+
+; CONFIG2L
+  CONFIG MCLRE = EXTMCLR ; MCLR Enable bit (If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR )
+  CONFIG PWRTS = PWRT_OFF ; Power-up timer selection bits (PWRT is disabled)
+  CONFIG MVECEN = ON ; Multi-vector enable bit (Multi-vector enabled, Vector table used for interrupts)
+  CONFIG IVT1WAY = ON ; IVTLOCK bit One-way set enable bit (IVTLOCK bit can be cleared and set only once)
+  CONFIG LPBOREN = OFF ; Low Power BOR Enable bit (ULPBOR disabled)
+  CONFIG BOREN = SBORDIS ; Brown-out Reset Enable bits (Brown-out Reset enabled , SBOREN bit is ignored)
+
+; CONFIG2H
+  CONFIG BORV = VBOR_2P45 ; Brown-out Reset Voltage Selection bits (Brown-out Reset Voltage (VBOR) set to 2.45V)
+  CONFIG ZCD = OFF ; ZCD Disable bit (ZCD disabled. ZCD can be enabled by setting the ZCDSEN bit of ZCDCON)
+  CONFIG PPS1WAY = ON ; PPSLOCK bit One-Way Set Enable bit (PPSLOCK bit can be cleared and set only once; PPS registers remain locked after one clear/set cycle)
+  CONFIG STVREN = ON ; Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause Reset)
+  CONFIG DEBUG = OFF ; Debugger Enable bit (Background debugger disabled)
+  CONFIG XINST = OFF ; Extended Instruction Set Enable bit (Extended Instruction Set and Indexed Addressing Mode disabled)
+
+; CONFIG3L
+  CONFIG WDTCPS = WDTCPS_31 ; WDT Period selection bits (Divider ratio 1:65536; software control of WDTPS)
+  CONFIG WDTE = OFF ; WDT operating mode (WDT Disabled; SWDTEN is ignored)
+
+; CONFIG3H
+  CONFIG WDTCWS = WDTCWS_7 ; WDT Window Select bits (window always open (100%); software control; keyed access not required)
+  CONFIG WDTCCS = SC ; WDT input clock selector (Software Control)
+
+; CONFIG4L
+  CONFIG BBSIZE = BBSIZE_512 ; Boot Block Size selection bits (Boot Block size is 512 words)
+  CONFIG BBEN = OFF ; Boot Block enable bit (Boot block disabled)
+  CONFIG SAFEN = OFF ; Storage Area Flash enable bit (SAF disabled)
+  CONFIG WRTAPP = OFF ; Application Block write protection bit (Application Block not write protected)
+
+; CONFIG4H
+  CONFIG WRTB = OFF ; Boot Block Write Protection bit (Boot Block not write-protected)
+  CONFIG WRTC = OFF ; Configuration Register Write Protection bit (Configuration registers not write-protected)
+  CONFIG WRTD = OFF ; Data EEPROM Write Protection bit (Data EEPROM not write-protected)
+  CONFIG WRTSAF = OFF ; SAF Write protection bit (SAF not Write Protected)
+  CONFIG LVP = ON ; Low Voltage Programming Enable bit (Low voltage programming enabled. MCLR/VPP pin function is MCLR. MCLRE configuration bit is ignored)
+
+  CONFIG CP = OFF ; PFM and Data EEPROM Code Protection bit (PFM and Data EEPROM code protection disabled)
+
+
+; config statements should precede project file includes.
+# 27 "main.asm" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.inc" 1 3
 
 
@@ -32669,119 +32753,133 @@ stk_offset SET 0
 auto_size SET 0
 ENDM
 # 6 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.inc" 2 3
-# 26 "main.asm" 2
+# 28 "main.asm" 2
 
 ;---------------------
 ; Program Inputs
 ;---------------------
 
-
-
 ;---------------------
 ; Program Constants
 ;---------------------
-REG10 equ 0x10
-REG11 equ 0x11
-REG01 equ 0x01
-refTemp equ 0x20 ; data memory location of reference temperature
-measTemp equ 0x21 ; data memory location of measured temperature
-contReg equ 0x22 ; data memory location of the contReg
-refTempH equ 0x62 ; The 3 digits for the BCD of the ref temp
-refTempM equ 0x61
-refTempL equ 0x60
-measTempH equ 0x72 ; The 3 digits for the BCD of the meas temp
-measTempM equ 0x71
-measTempL equ 0x70
 
-;---------------------
-; Definitions
-;---------------------
+ZER equ 0x01
+ONE equ 00000110B
+TWO equ 01011011B
+THREE equ 01001111B
+FOUR equ 01100110B
+FIVE equ 01101101B
+SIX equ 01111101B
+SEVEN equ 00000111B
+EIGHT equ 01111111B
+NINE equ 01101111B
+TEN equ 01110111B
+ELEVEN equ 01111111B
+TWELVE equ 00111001B
+THIRTEEN equ 00111111B
+FOURTEEN equ 01111001B
+FIFTEEN equ 01110001B
 
 
+Inner_loop equ 175
+Outer_loop equ 230
 
 
+REG10 equ 0x0A
+REG11 equ 0x0B
+REG12 equ 0x0C
 ;---------------------
 ; Main Program
 ;---------------------
-    PSECT absdata,abs,ovrld
-
-    ORG 0x20 ; begin code at 0x20 in program memory
-    MOVLW 0xFF ; set port D as output
-    MOVLW 0x00 ; clear port D
-    MOVWF PORTD
-    MOVWF TRISD,0
-    MOVLW 11 ; this is the measured temperature input ; place temperature inputs into data memory
-    MOVWF measTemp, 0
-    MOVLW 11 ; this is the reference temperature input
-    MOVWF refTemp, 0
+    PSECT absdata,abs,ovrld ; Do not change
 
 
-    MOVLW 11 ; this is the measured temperature input
-    MOVWF 0x25
-    BTFSC 0x25, 7 ; use 2's complement if meas is negative
-    NEGF 0x25, 1
-_measTempToBCDH: ; subtract 100 until negative to get high digit
-    MOVLW 100
-    SUBWF 0x25, 0
-    BN _measTempToBCDM
-    MOVWF 0x25
-    INCF measTempH
-    BRA _measTempToBCDH
-_measTempToBCDM: ; subtract 10 until negative to get medium digit
-    MOVLW 10
-    SUBWF 0x25, 0
-    BN _measTempToBCDL
-    MOVWF 0x25
-    INCF measTempM
-    BRA _measTempToBCDM
-_measTempToBCDL:
-    MOVFF 0x25, measTempL ; the remainder will be just the ones digit
+_initialization:
+    RCALL _setupOutputPortD
+    RCALL _setupInputPortC
 
 
-    MOVLW 11 ; this is the reference temperature input
-    MOVWF 0x25
-_refTempToBCDH: ; subtract 100 until negative to get high digit
-    MOVLW 100
-    SUBWF 0x25, 0
-    BN _refTempToBCDM
-    MOVWF 0x25
-    INCF refTempH
-    BRA _refTempToBCDH
-_refTempToBCDM: ; subtract 10 until negative to get medium digit
-    MOVLW 10
-    SUBWF 0x25, 0
-    BN _refTempToBCDL
-    MOVWF 0x25
-    INCF refTempM
-    BRA _refTempToBCDM
-_refTempToBCDL:
-    MOVFF 0x25, refTempL ; the remainder will be just the ones digit
-
-    CLRF 0x25
-
-
-    BTFSC measTemp, 7 ; if the meas temp is negative, will heat
-    BRA _heat
-
-    MOVLW 11 ; this is the measured temperature input
-    SUBWF refTemp, 0
-    BN _cool ; if meas temp > ref temp, cool
-    BZ _turnOff ; if meas temp == ref temp, turn off cool and heat
-    ; else, meas temp < ref temp, heat
-_heat: ; heat, set contReg to 2
     MOVLW 0x01
-    MOVWF contReg
-    BSF PORTD,1
-    BRA _sleep
-_cool: ; cool, set contReg to 1
-    MOVLW 0x02
-    MOVWF contReg
-    BSF PORTD,2
-    BRA _sleep
-_turnOff: ; display nothing, set contReg to 0
-    CLRF contReg
-    CLRF PORTD
+    MOVWF FSR0H, 0
+    MOVLW 0x00
+    MOVWF FSR0L, 0
+    MOVLW ZER
+    MOVWF POSTINC0
+    MOVLW ONE
+    MOVWF POSTINC0
+    MOVLW TWO
+    MOVWF POSTINC0
+    MOVLW THREE
+    MOVWF POSTINC0
+    MOVLW FOUR
+    MOVWF POSTINC0
+    MOVLW FIVE
+    MOVWF POSTINC0
+    MOVLW SIX
+    MOVWF POSTINC0
+    MOVLW SEVEN
+    MOVWF POSTINC0
+    MOVLW EIGHT
+    MOVWF POSTINC0
+    MOVLW NINE
+    MOVWF POSTINC0
+    MOVLW TEN
+    MOVWF POSTINC0
+    MOVLW ELEVEN
+    MOVWF POSTINC0
+    MOVLW TWELVE
+    MOVWF POSTINC0
+    MOVLW THIRTEEN
+    MOVWF POSTINC0
+    MOVLW FOURTEEN
+    MOVWF POSTINC0
+    MOVLW FIFTEEN
+    MOVWF POSTINC0
 
-_sleep:
-     SLEEP
-END
+_main:
+    CALL _loopDelay ; we can use RCALL
+    BRA _main
+
+;-----The Delay Subroutine
+_loopDelay:
+    MOVLW Inner_loop
+    MOVWF REG10
+    MOVLW Outer_loop
+    MOVWF REG11
+_loop1:
+    DECF REG10,1
+    BNZ _loop1
+    MOVLW Inner_loop ; Re-initialize the inner loop for when the outer loop decrements.
+    MOVWF REG10
+    DECF REG11,1
+    BNZ _loop1
+    DECF REG12,1
+    BNZ _loop1
+    RETURN
+
+
+_setupOutputPortD:
+    BANKSEL PORTD ;
+    CLRF PORTD ;Init PORTA
+    BANKSEL LATD ;Data Latch
+    CLRF LATD ;
+    BANKSEL ANSELD ;
+    CLRF ANSELD ;digital I/O
+    BANKSEL TRISD ;
+    MOVLW 0 ; set Port D as an output
+    MOVWF TRISD ;and set ((PORTD) and 0FFh), 0, a as ouput
+    RETURN
+
+_setupInputPortC:
+    BANKSEL PORTC
+    CLRF PORTC ;Init PORTC
+    BANKSEL LATC ;Data Latch
+    CLRF LATC ;
+    BANKSEL ANSELC ;
+    CLRF ANSELC ;digital I/O
+    BANKSEL TRISC
+    MOVLW 0xFF ; set Port C as output
+    MOVWF TRISC
+    RETURN
+
+    END

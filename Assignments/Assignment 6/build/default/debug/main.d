@@ -1,1 +1,1 @@
-build/default/debug\main.i: main.asm
+build/default/debug\main.i: main.asm myConfigFile.inc
