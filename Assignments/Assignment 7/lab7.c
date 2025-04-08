@@ -87,10 +87,6 @@ void main (void){
         // wait for the first input
         while((int)ret1 >= 100) {
             ret1 = scanKeypad();
-            if (ret1 >= 100 && ret1 < 105) {
-                display(33);
-                while(1){}
-            }
         }
         value1 += (int)ret1;
         display(value1); // display first value
@@ -99,6 +95,7 @@ void main (void){
         // cannot calculate at this point
         while((ret1 == NOVALUE) && (ret1 != COMPUTE)) {
             ret1 = scanKeypad();
+            ret1 = ADD;
         }
         
         // if a second digit is input, move previous to tens place
@@ -257,7 +254,7 @@ int calculate(int val1, int val2, enum VALUE op) {
             return val1 * val2;
         case DIVIDE:
             if (val2 == 0) {
-                return 0;
+                return 0; // can't divide by 0
             }
             return val1 / val2;
         default:
