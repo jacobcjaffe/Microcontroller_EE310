@@ -87,14 +87,17 @@ void main (void){
         // wait for the first input
         while((int)ret1 >= 100) {
             ret1 = scanKeypad();
+            ///////////////////////
+            ret1 = 3;
         }
         value1 += (int)ret1;
         display(value1); // display first value
         __delay_ms(300);
         ret1 = NOVALUE;
         // cannot calculate at this point
-        while((ret1 == NOVALUE) && (ret1 != COMPUTE)) {
+        while((ret1 == NOVALUE) || (ret1 == COMPUTE)) {
             ret1 = scanKeypad();
+            /////////////////////
             ret1 = ADD;
         }
         
@@ -120,6 +123,8 @@ void main (void){
         // wait for the second input
         while(ret1 >= 100) {
             ret1 = scanKeypad();
+            ////////////////////
+            ret1 = 6;
         }
         value2 += ret1;
         display(value2);
@@ -129,6 +134,7 @@ void main (void){
         // wait for either compute or another digit
         while((ret1 >= 100) && (ret1 != COMPUTE)) {
             ret1 = scanKeypad();
+            ret1 = COMPUTE;
         }
         if (ret1 < 100) { // if a second input
             value2 *= 10;
