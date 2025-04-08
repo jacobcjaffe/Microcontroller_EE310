@@ -27470,92 +27470,193 @@ enum VALUE {
     SUBTRACT = 101,
     MULTIPLY = 102,
     DIVIDE = 103,
-    NUMBER = 104,
+    COMPUTE = 105,
     ERROR = 200,
     NOVALUE = 255
 };
-void display(unsigned char hexValue);
-int scanKeypad();
-unsigned char calculate(unsigned char val1, unsigned char val2, enum VALUE op);
-unsigned char sevSeg[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+void display(int dValue);
+enum VALUE scanKeypad(void);
+int calculate(int val1, int val2, enum VALUE op);
+unsigned char sevSeg[] = {63, 6, 91, 79, 102, 109, 125, 7, 127, 111};
 
 void main (void){
-    enum VALUE first;
-    int value1 = 255, value2 = 255;
+    enum VALUE ret1;
     enum VALUE operator;
-    unsigned char result;
+    int value1, value2, result;
 
-    TRISB = 0b11110000;
+    TRISA = 0x00;
+    TRISB = 0b00001111;
     TRISC = 0x00;
     TRISD = 0x00;
 
     ADCON0 = 0;
     ADCON1 = 0;
+    ADCON2 = 0;
+    T1CON = 0;
+    ANSELA = 0;
+    ANSELB = 0;
+    ANSELC = 0;
+    ANSELD = 0;
 
-    value1 = 255;
-    value2 = 255;
+    CCP2CON = 0x00;
 
-    while(value1 == 255) {
-        value1 = scanKeypad();
-    }
-    display((unsigned char)value1);
-    while(operator == NOVALUE) {
-        operator = scanKeypad();
-    }
 
-    while(value2 == 255) {
-        value2 = scanKeypad();
+    while(1) {
+        ret1 = NOVALUE;
+        operator = NOVALUE;
+        value1 = 0;
+        value2 = 0;
+
+
+        while((int)ret1 >= 100) {
+            ret1 = scanKeypad();
+            if (ret1 >= 100 && ret1 < 105) {
+                display(33);
+                while(1){}
+            }
+        }
+        value1 += (int)ret1;
+        display(value1);
+        _delay((unsigned long)((300)*(4000000/4000.0)));
+        ret1 = NOVALUE;
+
+        while((ret1 == NOVALUE) && (ret1 != COMPUTE)) {
+            ret1 = scanKeypad();
+        }
+
+
+        if (ret1 < 100) {
+            value1 *= 10;
+            value1 += ret1;
+            display(value1);
+            _delay((unsigned long)((300)*(4000000/4000.0)));
+            ret1 = NOVALUE;
+
+            while((operator < 100) || (operator > 104)) {
+                operator = scanKeypad();
+            }
+        }
+        else {
+            operator = ret1;
+        }
+        ret1 = NOVALUE;
+        display(operator);
+
+        _delay((unsigned long)((300)*(4000000/4000.0)));
+
+        while(ret1 >= 100) {
+            ret1 = scanKeypad();
+        }
+        value2 += ret1;
+        display(value2);
+        _delay((unsigned long)((300)*(4000000/4000.0)));
+        ret1 = NOVALUE;
+
+
+        while((ret1 >= 100) && (ret1 != COMPUTE)) {
+            ret1 = scanKeypad();
+        }
+        if (ret1 < 100) {
+            value2 *= 10;
+            value2 += ret1;
+            display(value2);
+
+            while(ret1 != COMPUTE) {
+                ret1 = scanKeypad();
+            }
+        }
+
+        display(value2);
+        _delay((unsigned long)((300)*(4000000/4000.0)));
+        result = calculate(value1, value2, operator);
+        while (scanKeypad() != COMPUTE) {}
+        display(result);
     }
-    display((unsigned char)value2);
-    result = calculate(value1, value2, operator);
-    while (scanKeypad() != NUMBER) {}
-    display(result);
 }
 
 
-void display(unsigned char hexValue) {
+void display(int dValue) {
 
-    if(hexValue == 100) {
-        LATC = 0;
-        LATD = 0;
+    LATA = 0;
+    LATC = 0;
+    LATD = 0;
+
+    if(dValue >= 100) {
         return;
     }
 
 
-    unsigned char digit1, digit2;
-    digit1 = hexValue / 10;
-    digit2 = hexValue % 10;
+    if(dValue < 0) {
+        PORTDbits.RD7 = 1;
+        dValue *= -1;
+    }
 
-    if (digit1 != 0) {LATC = sevSeg[digit1];}
-    LATD = sevSeg[digit2];
+
+    int digit1, digit2;
+    digit1 = dValue / 10;
+    digit2 = dValue % 10;
+
+    if (digit1 != 0) {
+        LATC = sevSeg[digit1];
+        if ((sevSeg[digit1] & 0b1) == 1) {
+            PORTAbits.RA0 = 1;
+        }
+        if ((sevSeg[digit1] & 0b10) == 2) {
+            PORTAbits.RA1 = 1;
+        }
+    }
+    LATD += sevSeg[digit2];
+
     return;
 };
 
 
 
 
-int scanKeypad() {
-    int rowValue;
+enum VALUE scanKeypad(void) {
 
+
+    PORTBbits.RB4 = 0;
+    PORTBbits.RB5 = 0;
+    PORTBbits.RB6 = 0;
+    PORTBbits.RB7 = 0;
 
     PORTBbits.RB4 = 1;
-    if (PORTBbits.RB0 == 1) { return 1; }
-    else if (PORTBbits.RB1 == 1) { return 4; }
-    else if (PORTBbits.RB2 == 1) { return 7; }
+    if (PORTBbits.RB0 == 1) {
+        return one;
+    }
+    if (PORTBbits.RB1 == 1) {
+        return four;
+    }
+    if (PORTBbits.RB2 == 1) {
+        return seven;
+    }
+    PORTBbits.RB4 = 0;
 
 
     PORTBbits.RB5 = 1;
-    if (PORTBbits.RB0 == 1) { return 2; }
-    else if (PORTBbits.RB1 == 1) { return 5; }
-    else if (PORTBbits.RB2 == 1) { return 8; }
-    else if (PORTBbits.RB3 == 1) { return 0; }
+    if (PORTBbits.RB0 == 1) {
+        return two;
+    }
+    else if (PORTBbits.RB1 == 1) {
+        return five;
+    }
+    else if (PORTBbits.RB2 == 1) {
+        return eight;
+    }
+    else if (PORTBbits.RB3 == 1) {
+        return zero;
+    }
+    PORTBbits.RB5 = 0;
 
 
     PORTBbits.RB6 = 1;
-    if (PORTBbits.RB0 == 1) { return 3; }
-    else if (PORTBbits.RB1 == 1) { return 6; }
-    else if (PORTBbits.RB2 == 1) { return 9; }
-    else if (PORTBbits.RB3 == 1) { return 10; }
+    if (PORTBbits.RB0 == 1) { return three; }
+    else if (PORTBbits.RB1 == 1) { return six; }
+    else if (PORTBbits.RB2 == 1) { return nine; }
+    else if (PORTBbits.RB3 == 1) { return COMPUTE; }
+    PORTBbits.RB6 = 0;
 
 
     PORTBbits.RB7 = 1;
@@ -27563,13 +27664,14 @@ int scanKeypad() {
     else if (PORTBbits.RB1 == 1) { return SUBTRACT; }
     else if (PORTBbits.RB2 == 1) { return MULTIPLY; }
     else if (PORTBbits.RB3 == 1) { return DIVIDE; }
+    PORTBbits.RB7 = 0;
 
-    return 255;
+    return NOVALUE;
 };
 
 
 
-unsigned char calculate(unsigned char val1, unsigned char val2, enum VALUE op) {
+int calculate(int val1, int val2, enum VALUE op) {
     switch (op) {
         case ADD:
             return val1 + val2;
