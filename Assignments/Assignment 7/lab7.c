@@ -47,6 +47,7 @@ enum VALUE {
     MULTIPLY = 102,
     DIVIDE = 103,
     COMPUTE = 105,
+    RESET = 10,
     ERROR = 200,
     NOVALUE = 255
 };
@@ -79,6 +80,7 @@ void main (void){
     
     
     while(1) {
+        mainLoop:
         ret1 = NOVALUE;
         operator = NOVALUE;
         value1 = 0;
@@ -87,9 +89,8 @@ void main (void){
         // wait for the first input
         while((int)ret1 >= 100) {
             ret1 = scanKeypad();
-            ///////////////////////
-            ret1 = 3;
         }
+        if (ret1 == RESET) { continue; }
         value1 += (int)ret1;
         display(value1); // display first value
         __delay_ms(300);
@@ -97,9 +98,8 @@ void main (void){
         // cannot calculate at this point
         while((ret1 == NOVALUE) || (ret1 == COMPUTE)) {
             ret1 = scanKeypad();
-            /////////////////////
-            ret1 = ADD;
         }
+        if (ret1 == RESET) { continue; }
         
         // if a second digit is input, move previous to tens place
         if (ret1 < 100) {
@@ -108,49 +108,49 @@ void main (void){
             display(value1);
             __delay_ms(300);
             ret1 = NOVALUE;
-            // wait until operator is input
-            while((operator < 100) || (operator > 104)) {
-                operator = scanKeypad();
+            // wait until operator is input, or it's reset
+            while(((ret1 < 100) || (ret1 > 104)) && (ret1 != RESET)) {
+                ret1 = scanKeypad();
             }
         }
-        else { // else  an operator was input.
-            operator = ret1;
-        }
+        if (ret1 >= 100 && ret1 <= 103) { operator = ret1; }
+        else if (ret1 == RESET) { continue; } // reset
+        // else  an operator was input.
         ret1 = NOVALUE; 
-        display(operator); // clear display
-        
+        display(0); // clear display
         __delay_ms(300);
+        
         // wait for the second input
         while(ret1 >= 100) {
             ret1 = scanKeypad();
-            ////////////////////
-            ret1 = 6;
         }
+        if (ret1 == RESET) { continue; }
         value2 += ret1;
         display(value2);
         __delay_ms(300);
         ret1 = NOVALUE;
         
         // wait for either compute or another digit
-        while((ret1 >= 100) && (ret1 != COMPUTE)) {
+        while((ret1 >= 100) && (ret1 != COMPUTE) && (ret1 != RESET)) {
             ret1 = scanKeypad();
-            ret1 = COMPUTE;
         }
+        if (ret1 == RESET) { continue; }
         if (ret1 < 100) { // if a second input
             value2 *= 10;
             value2 += ret1;
-            display(value2);
-            // wait until compute is pressed. 
-            while(ret1 != COMPUTE) {
+            display(value2); // display second value
+            __delay_ms(300);
+            // wait until compute is pressed
+            do {
                 ret1 = scanKeypad();
-            }
+            } while((ret1 != COMPUTE) && (ret1 != RESET));
         }
+        if (ret1 == RESET) { continue; }
+        
         // otherwise compute was pressed.
-        display(value2); // display second value
-        __delay_ms(300);
         result = calculate(value1, value2, operator);
-        while (scanKeypad() != COMPUTE) {} // wait until # is pressed to display
         display(result);
+        __delay_ms(800);
     }
 }
 
@@ -200,6 +200,7 @@ enum VALUE scanKeypad(void) {
     PORTBbits.RB5 = 0;
     PORTBbits.RB6 = 0;
     PORTBbits.RB7 = 0;
+    __delay_ms(50);
     // scan the first column
     PORTBbits.RB4 = 1;
     if (PORTBbits.RB0 == 1) { 
@@ -210,6 +211,11 @@ enum VALUE scanKeypad(void) {
     }
     if (PORTBbits.RB2 == 1) { 
         return seven; 
+    }
+    if (PORTBbits.RB3 == 1) { // reset
+        display(0);
+        __delay_ms(50);
+        return RESET;
     }
     PORTBbits.RB4 = 0;
 

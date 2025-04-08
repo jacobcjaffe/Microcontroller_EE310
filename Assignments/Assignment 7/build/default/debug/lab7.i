@@ -27513,8 +27513,8 @@ void main (void){
 
         while((int)ret1 >= 100) {
             ret1 = scanKeypad();
+            if (ret1 == RESET) { continue; }
         }
-        if (ret1 == RESET) { continue; }
         value1 += (int)ret1;
         display(value1);
         _delay((unsigned long)((300)*(4000000/4000.0)));
@@ -27533,17 +27533,18 @@ void main (void){
             _delay((unsigned long)((300)*(4000000/4000.0)));
             ret1 = NOVALUE;
 
-            while(((ret1 < 100) || (ret1 > 104)) && (ret1 != RESET)) {
-                ret1 = scanKeypad();
+            while((operator < 100) || (operator > 104)) {
+                operator = scanKeypad();
             }
+            if (ret1 == RESET) { continue; }
         }
-        if (ret1 >= 100 && ret1 <= 103) { operator = ret1; }
-        else if (ret1 == RESET) { continue; }
-
+        else {
+            operator = ret1;
+        }
         ret1 = NOVALUE;
         display(0);
-        _delay((unsigned long)((300)*(4000000/4000.0)));
 
+        _delay((unsigned long)((300)*(4000000/4000.0)));
 
         while(ret1 >= 100) {
             ret1 = scanKeypad();
@@ -27555,10 +27556,9 @@ void main (void){
         ret1 = NOVALUE;
 
 
-        while((ret1 >= 100) && (ret1 != COMPUTE) && (ret1 != RESET)) {
+        while((ret1 >= 100) && (ret1 != COMPUTE)) {
             ret1 = scanKeypad();
         }
-        if (ret1 == RESET) { continue; }
         if (ret1 < 100) {
             value2 *= 10;
             value2 += ret1;
@@ -27567,9 +27567,10 @@ void main (void){
 
             do {
                 ret1 = scanKeypad();
-            } while((ret1 != COMPUTE) && (ret1 != RESET));
+                if (ret1 == RESET) { continue; }
+            } while(ret1 != COMPUTE);
         }
-        if (ret1 == RESET) { continue; }
+        else if (ret1 == RESET) { continue; }
 
 
         result = calculate(value1, value2, operator);
@@ -27624,7 +27625,6 @@ enum VALUE scanKeypad(void) {
     PORTBbits.RB5 = 0;
     PORTBbits.RB6 = 0;
     PORTBbits.RB7 = 0;
-    _delay((unsigned long)((50)*(4000000/4000.0)));
 
     PORTBbits.RB4 = 1;
     if (PORTBbits.RB0 == 1) {
@@ -27638,7 +27638,6 @@ enum VALUE scanKeypad(void) {
     }
     if (PORTBbits.RB3 == 1) {
         display(0);
-        _delay((unsigned long)((50)*(4000000/4000.0)));
         return RESET;
     }
     PORTBbits.RB4 = 0;
