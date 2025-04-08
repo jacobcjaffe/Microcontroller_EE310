@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 18F47K42 ]
 [d frameptr 16353 ]
-"61 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
+"63 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
 [e E16765 VALUE `uc
 zero 0
 one 1
@@ -54,13 +54,13 @@ NOVALUE 255
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"60 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
+"62 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
 [v _main main `(v  1 e 1 0 ]
-"158
+"160
 [v _display display `(v  1 e 1 0 ]
-"196
+"198
 [v _scanKeypad scanKeypad `(E16765  1 e 1 0 ]
-"259
+"261
 [v _calculate calculate `(i  1 e 2 0 ]
 "8017 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc/pic18f47k42.h
 [v _ANSELA ANSELA `VEuc  1 e 1 @14912 ]
@@ -136,35 +136,35 @@ NOVALUE 255
 "46959
 "46959
 [v _PORTDbits PORTDbits `VES90  1 e 1 @16333 ]
-"58 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
+"60 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
 [v _sevSeg sevSeg `[10]uc  1 e 10 0 ]
-"60
+"62
 [v _main main `(v  1 e 1 0 ]
 {
-"63
+"65
 [v main@value2 value2 `i  1 a 2 22 ]
 [v main@value1 value1 `i  1 a 2 20 ]
 [v main@result result `i  1 a 2 17 ]
-"61
+"63
 [v main@ret1 ret1 `E16765  1 a 1 24 ]
-"62
+"64
 [v main@operator operator `E16765  1 a 1 19 ]
-"155
+"157
 } 0
-"196
+"198
 [v _scanKeypad scanKeypad `(E16765  1 e 1 0 ]
 {
-"255
+"257
 } 0
-"158
+"160
 [v _display display `(v  1 e 1 0 ]
 {
-"175
+"177
 [v display@digit1 digit1 `i  1 a 2 12 ]
 [v display@digit2 digit2 `i  1 a 2 10 ]
-"158
+"160
 [v display@dValue dValue `i  1 p 2 8 ]
-"191
+"193
 } 0
 "15 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -187,13 +187,13 @@ NOVALUE 255
 [v ___awmod@divisor divisor `i  1 p 2 2 ]
 "34
 } 0
-"259 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
+"261 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
 [v _calculate calculate `(i  1 e 2 0 ]
 {
 [v calculate@val1 val1 `i  1 p 2 8 ]
 [v calculate@val2 val2 `i  1 p 2 10 ]
 [v calculate@op op `E16765  1 p 1 12 ]
-"275
+"277
 } 0
 "7 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]

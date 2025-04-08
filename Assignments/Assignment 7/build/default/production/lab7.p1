@@ -1,7 +1,7 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"61 lab7.c
-[; ;lab7.c: 61:     enum VALUE ret1;
+"63 lab7.c
+[; ;lab7.c: 63:     enum VALUE ret1;
 [c E16765 0 1 2 3 4 5 6 7 8 9 100 101 102 103 105 10 200 255 .. ]
 [n E16765 VALUE zero one two three four five six seven eight nine ADD SUBTRACT MULTIPLY DIVIDE COMPUTE RESET ERROR NOVALUE  ]
 "46476 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc/pic18f47k42.h
@@ -43,18 +43,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "39598
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc/pic18f47k42.h: 39598: extern volatile unsigned char CCP2CON __attribute__((address(0x3F7A)));
 [v _CCP2CON `Vuc ~T0 @X0 0 e@16250 ]
-"56 lab7.c
-[; ;lab7.c: 56: enum VALUE scanKeypad(void);
+"58 lab7.c
+[; ;lab7.c: 58: enum VALUE scanKeypad(void);
 [v _scanKeypad `(E16765 ~T0 @X0 0 ef ]
-"55
-[; ;lab7.c: 55: void display(int dValue);
+"57
+[; ;lab7.c: 57: void display(int dValue);
 [v _display `(v ~T0 @X0 0 ef1`i ]
 [v F205 `(v ~T0 @X0 1 tf1`ul ]
 "20 C:\Program Files\Microchip\xc8\v3.00\pic\include/builtins.h
 [v __delay `JF205 ~T0 @X0 0 e ]
 [p i __delay ]
-"57 lab7.c
-[; ;lab7.c: 57: int calculate(int val1, int val2, enum VALUE op);
+"59 lab7.c
+[; ;lab7.c: 59: int calculate(int val1, int val2, enum VALUE op);
 [v _calculate `(i ~T0 @X0 0 ef3`i`i`E16765 ]
 "45976 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc/pic18f47k42.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc/pic18f47k42.h: 45976: extern volatile unsigned char LATA __attribute__((address(0x3FBA)));
@@ -2388,8 +2388,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x LVP  =  ON          ]
 "68
 [p x CP  =  OFF          ]
-"58 lab7.c
-[; ;lab7.c: 58: unsigned char sevSeg[] = {63, 6, 91, 79, 102, 109, 125, 7, 127, 111};
+"60 lab7.c
+[; ;lab7.c: 60: unsigned char sevSeg[] = {63, 6, 91, 79, 102, 109, 125, 7, 127, 111};
 [v _sevSeg `uc ~T0 @X0 -> 10 `i e ]
 [i _sevSeg
 :U ..
@@ -2406,187 +2406,187 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"60
-[; ;lab7.c: 60: void main (void){
+"62
+[; ;lab7.c: 62: void main (void){
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"61
-[; ;lab7.c: 61:     enum VALUE ret1;
-[v _ret1 `E16765 ~T0 @X0 1 a ]
-"62
-[; ;lab7.c: 62:     enum VALUE operator;
-[v _operator `E16765 ~T0 @X0 1 a ]
 "63
-[; ;lab7.c: 63:     int value1, value2, result;
+[; ;lab7.c: 63:     enum VALUE ret1;
+[v _ret1 `E16765 ~T0 @X0 1 a ]
+"64
+[; ;lab7.c: 64:     enum VALUE operator;
+[v _operator `E16765 ~T0 @X0 1 a ]
+"65
+[; ;lab7.c: 65:     int value1, value2, result;
 [v _value1 `i ~T0 @X0 1 a ]
 [v _value2 `i ~T0 @X0 1 a ]
 [v _result `i ~T0 @X0 1 a ]
-"65
-[; ;lab7.c: 65:     TRISA = 0x00;
-[e = _TRISA -> -> 0 `i `uc ]
-"66
-[; ;lab7.c: 66:     TRISB = 0b00001111;
-[e = _TRISB -> -> 15 `i `uc ]
 "67
-[; ;lab7.c: 67:     TRISC = 0x00;
-[e = _TRISC -> -> 0 `i `uc ]
+[; ;lab7.c: 67:     TRISA = 0x00;
+[e = _TRISA -> -> 0 `i `uc ]
 "68
-[; ;lab7.c: 68:     TRISD = 0x00;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;lab7.c: 68:     TRISB = 0b00001111;
+[e = _TRISB -> -> 15 `i `uc ]
+"69
+[; ;lab7.c: 69:     TRISC = 0x00;
+[e = _TRISC -> -> 0 `i `uc ]
 "70
-[; ;lab7.c: 70:     ADCON0 = 0;
-[e = _ADCON0 -> -> 0 `i `uc ]
-"71
-[; ;lab7.c: 71:     ADCON1 = 0;
-[e = _ADCON1 -> -> 0 `i `uc ]
+[; ;lab7.c: 70:     TRISD = 0x00;
+[e = _TRISD -> -> 0 `i `uc ]
 "72
-[; ;lab7.c: 72:     ADCON2 = 0;
-[e = _ADCON2 -> -> 0 `i `uc ]
+[; ;lab7.c: 72:     ADCON0 = 0;
+[e = _ADCON0 -> -> 0 `i `uc ]
 "73
-[; ;lab7.c: 73:     T1CON = 0;
-[e = _T1CON -> -> 0 `i `uc ]
+[; ;lab7.c: 73:     ADCON1 = 0;
+[e = _ADCON1 -> -> 0 `i `uc ]
 "74
-[; ;lab7.c: 74:     ANSELA = 0;
-[e = _ANSELA -> -> 0 `i `uc ]
+[; ;lab7.c: 74:     ADCON2 = 0;
+[e = _ADCON2 -> -> 0 `i `uc ]
 "75
-[; ;lab7.c: 75:     ANSELB = 0;
-[e = _ANSELB -> -> 0 `i `uc ]
+[; ;lab7.c: 75:     T1CON = 0;
+[e = _T1CON -> -> 0 `i `uc ]
 "76
-[; ;lab7.c: 76:     ANSELC = 0;
-[e = _ANSELC -> -> 0 `i `uc ]
+[; ;lab7.c: 76:     ANSELA = 0;
+[e = _ANSELA -> -> 0 `i `uc ]
 "77
-[; ;lab7.c: 77:     ANSELD = 0;
-[e = _ANSELD -> -> 0 `i `uc ]
+[; ;lab7.c: 77:     ANSELB = 0;
+[e = _ANSELB -> -> 0 `i `uc ]
+"78
+[; ;lab7.c: 78:     ANSELC = 0;
+[e = _ANSELC -> -> 0 `i `uc ]
 "79
-[; ;lab7.c: 79:     CCP2CON = 0x00;
+[; ;lab7.c: 79:     ANSELD = 0;
+[e = _ANSELD -> -> 0 `i `uc ]
+"81
+[; ;lab7.c: 81:     CCP2CON = 0x00;
 [e = _CCP2CON -> -> 0 `i `uc ]
-"82
-[; ;lab7.c: 82:     while(1) {
+"84
+[; ;lab7.c: 84:     while(1) {
 [e :U 2248 ]
 {
-"83
-[; ;lab7.c: 83:         mainLoop:
-[e :U 2250 ]
-"84
-[; ;lab7.c: 84:         ret1 = NOVALUE;
-[e = _ret1 . `E16765 17 ]
 "85
-[; ;lab7.c: 85:         operator = NOVALUE;
-[e = _operator . `E16765 17 ]
+[; ;lab7.c: 85:         mainLoop:
+[e :U 2250 ]
 "86
-[; ;lab7.c: 86:         value1 = 0;
-[e = _value1 -> 0 `i ]
+[; ;lab7.c: 86:         ret1 = NOVALUE;
+[e = _ret1 . `E16765 17 ]
 "87
-[; ;lab7.c: 87:         value2 = 0;
+[; ;lab7.c: 87:         operator = NOVALUE;
+[e = _operator . `E16765 17 ]
+"88
+[; ;lab7.c: 88:         value1 = 0;
+[e = _value1 -> 0 `i ]
+"89
+[; ;lab7.c: 89:         value2 = 0;
 [e = _value2 -> 0 `i ]
-"90
-[; ;lab7.c: 90:         while((int)ret1 >= 100) {
+"92
+[; ;lab7.c: 92:         while((int)ret1 >= 100) {
 [e $U 2251  ]
 [e :U 2252 ]
 {
-"91
-[; ;lab7.c: 91:             ret1 = scanKeypad();
+"93
+[; ;lab7.c: 93:             ret1 = scanKeypad();
 [e = _ret1 ( _scanKeypad ..  ]
-"92
-[; ;lab7.c: 92:         }
+"94
+[; ;lab7.c: 94:         }
 }
 [e :U 2251 ]
-"90
-[; ;lab7.c: 90:         while((int)ret1 >= 100) {
+"92
+[; ;lab7.c: 92:         while((int)ret1 >= 100) {
 [e $ >= -> _ret1 `i -> 100 `i 2252  ]
 [e :U 2253 ]
-"93
-[; ;lab7.c: 93:         if (ret1 == RESET) { continue; }
+"95
+[; ;lab7.c: 95:         if (ret1 == RESET) { continue; }
 [e $ ! == -> _ret1 `ui -> . `E16765 15 `ui 2254  ]
 {
 [e $U 2247  ]
 }
 [e :U 2254 ]
-"94
-[; ;lab7.c: 94:         value1 += (int)ret1;
-[e =+ _value1 -> _ret1 `i ]
-"95
-[; ;lab7.c: 95:         display(value1);
-[e ( _display (1 _value1 ]
 "96
-[; ;lab7.c: 96:         _delay((unsigned long)((300)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;lab7.c: 96:         value1 += (int)ret1;
+[e =+ _value1 -> _ret1 `i ]
 "97
-[; ;lab7.c: 97:         ret1 = NOVALUE;
-[e = _ret1 . `E16765 17 ]
+[; ;lab7.c: 97:         display(value1);
+[e ( _display (1 _value1 ]
+"98
+[; ;lab7.c: 98:         _delay((unsigned long)((300)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "99
-[; ;lab7.c: 99:         while((ret1 == NOVALUE) || (ret1 == COMPUTE)) {
+[; ;lab7.c: 99:         ret1 = NOVALUE;
+[e = _ret1 . `E16765 17 ]
+"101
+[; ;lab7.c: 101:         while((ret1 == NOVALUE) || (ret1 == COMPUTE)) {
 [e $U 2255  ]
 [e :U 2256 ]
 {
-"100
-[; ;lab7.c: 100:             ret1 = scanKeypad();
+"102
+[; ;lab7.c: 102:             ret1 = scanKeypad();
 [e = _ret1 ( _scanKeypad ..  ]
-"101
-[; ;lab7.c: 101:         }
+"103
+[; ;lab7.c: 103:         }
 }
 [e :U 2255 ]
-"99
-[; ;lab7.c: 99:         while((ret1 == NOVALUE) || (ret1 == COMPUTE)) {
+"101
+[; ;lab7.c: 101:         while((ret1 == NOVALUE) || (ret1 == COMPUTE)) {
 [e $ || == -> _ret1 `ui -> . `E16765 17 `ui == -> _ret1 `ui -> . `E16765 14 `ui 2256  ]
 [e :U 2257 ]
-"102
-[; ;lab7.c: 102:         if (ret1 == RESET) { continue; }
+"104
+[; ;lab7.c: 104:         if (ret1 == RESET) { continue; }
 [e $ ! == -> _ret1 `ui -> . `E16765 15 `ui 2258  ]
 {
 [e $U 2247  ]
 }
 [e :U 2258 ]
-"105
-[; ;lab7.c: 105:         if (ret1 < 100) {
+"107
+[; ;lab7.c: 107:         if (ret1 < 100) {
 [e $ ! < -> _ret1 `ui -> -> 100 `i `ui 2259  ]
 {
-"106
-[; ;lab7.c: 106:             value1 *= 10;
-[e =* _value1 -> 10 `i ]
-"107
-[; ;lab7.c: 107:             value1 += ret1;
-[e =+ _value1 -> _ret1 `i ]
 "108
-[; ;lab7.c: 108:             display(value1);
-[e ( _display (1 _value1 ]
+[; ;lab7.c: 108:             value1 *= 10;
+[e =* _value1 -> 10 `i ]
 "109
-[; ;lab7.c: 109:             _delay((unsigned long)((300)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;lab7.c: 109:             value1 += ret1;
+[e =+ _value1 -> _ret1 `i ]
 "110
-[; ;lab7.c: 110:             ret1 = NOVALUE;
-[e = _ret1 . `E16765 17 ]
+[; ;lab7.c: 110:             display(value1);
+[e ( _display (1 _value1 ]
+"111
+[; ;lab7.c: 111:             _delay((unsigned long)((300)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "112
-[; ;lab7.c: 112:             while(((ret1 < 100) || (ret1 > 104)) && (ret1 != RESET)) {
+[; ;lab7.c: 112:             ret1 = NOVALUE;
+[e = _ret1 . `E16765 17 ]
+"114
+[; ;lab7.c: 114:             while(((ret1 < 100) || (ret1 > 104)) && (ret1 != RESET)) {
 [e $U 2260  ]
 [e :U 2261 ]
 {
-"113
-[; ;lab7.c: 113:                 ret1 = scanKeypad();
+"115
+[; ;lab7.c: 115:                 ret1 = scanKeypad();
 [e = _ret1 ( _scanKeypad ..  ]
-"114
-[; ;lab7.c: 114:             }
+"116
+[; ;lab7.c: 116:             }
 }
 [e :U 2260 ]
-"112
-[; ;lab7.c: 112:             while(((ret1 < 100) || (ret1 > 104)) && (ret1 != RESET)) {
+"114
+[; ;lab7.c: 114:             while(((ret1 < 100) || (ret1 > 104)) && (ret1 != RESET)) {
 [e $ && || < -> _ret1 `ui -> -> 100 `i `ui > -> _ret1 `ui -> -> 104 `i `ui != -> _ret1 `ui -> . `E16765 15 `ui 2261  ]
 [e :U 2262 ]
-"115
-[; ;lab7.c: 115:         }
+"117
+[; ;lab7.c: 117:         }
 }
 [e :U 2259 ]
-"116
-[; ;lab7.c: 116:         if (ret1 >= 100 && ret1 <= 103) { operator = ret1; }
+"118
+[; ;lab7.c: 118:         if (ret1 >= 100 && ret1 <= 103) { operator = ret1; }
 [e $ ! && >= -> _ret1 `ui -> -> 100 `i `ui <= -> _ret1 `ui -> -> 103 `i `ui 2263  ]
 {
 [e = _operator _ret1 ]
 }
 [e $U 2264  ]
-"117
-[; ;lab7.c: 117:         else if (ret1 == RESET) { continue; }
+"119
+[; ;lab7.c: 119:         else if (ret1 == RESET) { continue; }
 [e :U 2263 ]
 [e $ ! == -> _ret1 `ui -> . `E16765 15 `ui 2265  ]
 {
@@ -2594,379 +2594,379 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2265 ]
 [e :U 2264 ]
-"119
-[; ;lab7.c: 119:         ret1 = NOVALUE;
-[e = _ret1 . `E16765 17 ]
-"120
-[; ;lab7.c: 120:         display(0);
-[e ( _display (1 -> 0 `i ]
 "121
-[; ;lab7.c: 121:         _delay((unsigned long)((300)*(4000000/4000.0)));
+[; ;lab7.c: 121:         ret1 = NOVALUE;
+[e = _ret1 . `E16765 17 ]
+"122
+[; ;lab7.c: 122:         display(0);
+[e ( _display (1 -> 0 `i ]
+"123
+[; ;lab7.c: 123:         _delay((unsigned long)((300)*(4000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"124
-[; ;lab7.c: 124:         while(ret1 >= 100) {
+"126
+[; ;lab7.c: 126:         while(ret1 >= 100) {
 [e $U 2266  ]
 [e :U 2267 ]
 {
-"125
-[; ;lab7.c: 125:             ret1 = scanKeypad();
+"127
+[; ;lab7.c: 127:             ret1 = scanKeypad();
 [e = _ret1 ( _scanKeypad ..  ]
-"126
-[; ;lab7.c: 126:         }
+"128
+[; ;lab7.c: 128:         }
 }
 [e :U 2266 ]
-"124
-[; ;lab7.c: 124:         while(ret1 >= 100) {
+"126
+[; ;lab7.c: 126:         while(ret1 >= 100) {
 [e $ >= -> _ret1 `ui -> -> 100 `i `ui 2267  ]
 [e :U 2268 ]
-"127
-[; ;lab7.c: 127:         if (ret1 == RESET) { continue; }
+"129
+[; ;lab7.c: 129:         if (ret1 == RESET) { continue; }
 [e $ ! == -> _ret1 `ui -> . `E16765 15 `ui 2269  ]
 {
 [e $U 2247  ]
 }
 [e :U 2269 ]
-"128
-[; ;lab7.c: 128:         value2 += ret1;
-[e =+ _value2 -> _ret1 `i ]
-"129
-[; ;lab7.c: 129:         display(value2);
-[e ( _display (1 _value2 ]
 "130
-[; ;lab7.c: 130:         _delay((unsigned long)((300)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;lab7.c: 130:         value2 += ret1;
+[e =+ _value2 -> _ret1 `i ]
 "131
-[; ;lab7.c: 131:         ret1 = NOVALUE;
+[; ;lab7.c: 131:         display(value2);
+[e ( _display (1 _value2 ]
+"132
+[; ;lab7.c: 132:         _delay((unsigned long)((300)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"133
+[; ;lab7.c: 133:         ret1 = NOVALUE;
 [e = _ret1 . `E16765 17 ]
-"134
-[; ;lab7.c: 134:         while((ret1 >= 100) && (ret1 != COMPUTE) && (ret1 != RESET)) {
+"136
+[; ;lab7.c: 136:         while((ret1 >= 100) && (ret1 != COMPUTE) && (ret1 != RESET)) {
 [e $U 2270  ]
 [e :U 2271 ]
 {
-"135
-[; ;lab7.c: 135:             ret1 = scanKeypad();
+"137
+[; ;lab7.c: 137:             ret1 = scanKeypad();
 [e = _ret1 ( _scanKeypad ..  ]
-"136
-[; ;lab7.c: 136:         }
+"138
+[; ;lab7.c: 138:         }
 }
 [e :U 2270 ]
-"134
-[; ;lab7.c: 134:         while((ret1 >= 100) && (ret1 != COMPUTE) && (ret1 != RESET)) {
+"136
+[; ;lab7.c: 136:         while((ret1 >= 100) && (ret1 != COMPUTE) && (ret1 != RESET)) {
 [e $ && && >= -> _ret1 `ui -> -> 100 `i `ui != -> _ret1 `ui -> . `E16765 14 `ui != -> _ret1 `ui -> . `E16765 15 `ui 2271  ]
 [e :U 2272 ]
-"137
-[; ;lab7.c: 137:         if (ret1 == RESET) { continue; }
+"139
+[; ;lab7.c: 139:         if (ret1 == RESET) { continue; }
 [e $ ! == -> _ret1 `ui -> . `E16765 15 `ui 2273  ]
 {
 [e $U 2247  ]
 }
 [e :U 2273 ]
-"138
-[; ;lab7.c: 138:         if (ret1 < 100) {
+"140
+[; ;lab7.c: 140:         if (ret1 < 100) {
 [e $ ! < -> _ret1 `ui -> -> 100 `i `ui 2274  ]
 {
-"139
-[; ;lab7.c: 139:             value2 *= 10;
-[e =* _value2 -> 10 `i ]
-"140
-[; ;lab7.c: 140:             value2 += ret1;
-[e =+ _value2 -> _ret1 `i ]
 "141
-[; ;lab7.c: 141:             display(value2);
-[e ( _display (1 _value2 ]
+[; ;lab7.c: 141:             value2 *= 10;
+[e =* _value2 -> 10 `i ]
 "142
-[; ;lab7.c: 142:             _delay((unsigned long)((300)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;lab7.c: 142:             value2 += ret1;
+[e =+ _value2 -> _ret1 `i ]
+"143
+[; ;lab7.c: 143:             display(value2);
+[e ( _display (1 _value2 ]
 "144
-[; ;lab7.c: 144:             do {
+[; ;lab7.c: 144:             _delay((unsigned long)((300)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"146
+[; ;lab7.c: 146:             do {
 [e :U 2277 ]
 {
-"145
-[; ;lab7.c: 145:                 ret1 = scanKeypad();
+"147
+[; ;lab7.c: 147:                 ret1 = scanKeypad();
 [e = _ret1 ( _scanKeypad ..  ]
-"146
-[; ;lab7.c: 146:             } while((ret1 != COMPUTE) && (ret1 != RESET));
+"148
+[; ;lab7.c: 148:             } while((ret1 != COMPUTE) && (ret1 != RESET));
 }
 [e $ && != -> _ret1 `ui -> . `E16765 14 `ui != -> _ret1 `ui -> . `E16765 15 `ui 2277  ]
 [e :U 2276 ]
-"147
-[; ;lab7.c: 147:         }
+"149
+[; ;lab7.c: 149:         }
 }
 [e :U 2274 ]
-"148
-[; ;lab7.c: 148:         if (ret1 == RESET) { continue; }
+"150
+[; ;lab7.c: 150:         if (ret1 == RESET) { continue; }
 [e $ ! == -> _ret1 `ui -> . `E16765 15 `ui 2278  ]
 {
 [e $U 2247  ]
 }
 [e :U 2278 ]
-"151
-[; ;lab7.c: 151:         result = calculate(value1, value2, operator);
-[e = _result ( _calculate (3 , , _value1 _value2 _operator ]
-"152
-[; ;lab7.c: 152:         display(result);
-[e ( _display (1 _result ]
 "153
-[; ;lab7.c: 153:         _delay((unsigned long)((800)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 800 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;lab7.c: 153:         result = calculate(value1, value2, operator);
+[e = _result ( _calculate (3 , , _value1 _value2 _operator ]
 "154
-[; ;lab7.c: 154:     }
+[; ;lab7.c: 154:         display(result);
+[e ( _display (1 _result ]
+"155
+[; ;lab7.c: 155:         _delay((unsigned long)((800)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 800 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"156
+[; ;lab7.c: 156:     }
 }
 [e :U 2247 ]
 [e $U 2248  ]
 [e :U 2249 ]
-"155
-[; ;lab7.c: 155: }
+"157
+[; ;lab7.c: 157: }
 [e :UE 2246 ]
 }
-"158
-[; ;lab7.c: 158: void display(int dValue) {
+"160
+[; ;lab7.c: 160: void display(int dValue) {
 [v _display `(v ~T0 @X0 1 ef1`i ]
 {
 [e :U _display ]
 [v _dValue `i ~T0 @X0 1 r1 ]
 [f ]
-"160
-[; ;lab7.c: 160:     LATA = 0;
-[e = _LATA -> -> 0 `i `uc ]
-"161
-[; ;lab7.c: 161:     LATC = 0;
-[e = _LATC -> -> 0 `i `uc ]
 "162
-[; ;lab7.c: 162:     LATD = 0;
-[e = _LATD -> -> 0 `i `uc ]
+[; ;lab7.c: 162:     LATA = 0;
+[e = _LATA -> -> 0 `i `uc ]
+"163
+[; ;lab7.c: 163:     LATC = 0;
+[e = _LATC -> -> 0 `i `uc ]
 "164
-[; ;lab7.c: 164:     if(dValue >= 100) {
+[; ;lab7.c: 164:     LATD = 0;
+[e = _LATD -> -> 0 `i `uc ]
+"166
+[; ;lab7.c: 166:     if(dValue >= 100) {
 [e $ ! >= _dValue -> 100 `i 2280  ]
 {
-"165
-[; ;lab7.c: 165:         return;
+"167
+[; ;lab7.c: 167:         return;
 [e $UE 2279  ]
-"166
-[; ;lab7.c: 166:     }
+"168
+[; ;lab7.c: 168:     }
 }
 [e :U 2280 ]
-"169
-[; ;lab7.c: 169:     if(dValue < 0) {
+"171
+[; ;lab7.c: 171:     if(dValue < 0) {
 [e $ ! < _dValue -> 0 `i 2281  ]
 {
-"170
-[; ;lab7.c: 170:         PORTDbits.RD7 = 1;
-[e = . . _PORTDbits 0 7 -> -> 1 `i `uc ]
-"171
-[; ;lab7.c: 171:         dValue *= -1;
-[e =* _dValue -U -> 1 `i ]
 "172
-[; ;lab7.c: 172:     }
+[; ;lab7.c: 172:         PORTDbits.RD7 = 1;
+[e = . . _PORTDbits 0 7 -> -> 1 `i `uc ]
+"173
+[; ;lab7.c: 173:         dValue *= -1;
+[e =* _dValue -U -> 1 `i ]
+"174
+[; ;lab7.c: 174:     }
 }
 [e :U 2281 ]
-"175
-[; ;lab7.c: 175:     int digit1, digit2;
+"177
+[; ;lab7.c: 177:     int digit1, digit2;
 [v _digit1 `i ~T0 @X0 1 a ]
 [v _digit2 `i ~T0 @X0 1 a ]
-"176
-[; ;lab7.c: 176:     digit1 = dValue / 10;
+"178
+[; ;lab7.c: 178:     digit1 = dValue / 10;
 [e = _digit1 / _dValue -> 10 `i ]
-"177
-[; ;lab7.c: 177:     digit2 = dValue % 10;
-[e = _digit2 % _dValue -> 10 `i ]
 "179
-[; ;lab7.c: 179:     if (digit1 != 0) {
+[; ;lab7.c: 179:     digit2 = dValue % 10;
+[e = _digit2 % _dValue -> 10 `i ]
+"181
+[; ;lab7.c: 181:     if (digit1 != 0) {
 [e $ ! != _digit1 -> 0 `i 2282  ]
 {
-"180
-[; ;lab7.c: 180:         LATC = sevSeg[digit1];
+"182
+[; ;lab7.c: 182:         LATC = sevSeg[digit1];
 [e = _LATC *U + &U _sevSeg * -> -> _digit1 `ui `ux -> -> # *U &U _sevSeg `ui `ux ]
-"181
-[; ;lab7.c: 181:         if ((sevSeg[digit1] & 0b1) == 1) {
+"183
+[; ;lab7.c: 183:         if ((sevSeg[digit1] & 0b1) == 1) {
 [e $ ! == & -> *U + &U _sevSeg * -> -> _digit1 `ui `ux -> -> # *U &U _sevSeg `ui `ux `i -> 1 `i -> 1 `i 2283  ]
 {
-"182
-[; ;lab7.c: 182:             PORTAbits.RA0 = 1;
+"184
+[; ;lab7.c: 184:             PORTAbits.RA0 = 1;
 [e = . . _PORTAbits 0 0 -> -> 1 `i `uc ]
-"183
-[; ;lab7.c: 183:         }
+"185
+[; ;lab7.c: 185:         }
 }
 [e :U 2283 ]
-"184
-[; ;lab7.c: 184:         if ((sevSeg[digit1] & 0b10) == 2) {
+"186
+[; ;lab7.c: 186:         if ((sevSeg[digit1] & 0b10) == 2) {
 [e $ ! == & -> *U + &U _sevSeg * -> -> _digit1 `ui `ux -> -> # *U &U _sevSeg `ui `ux `i -> 2 `i -> 2 `i 2284  ]
 {
-"185
-[; ;lab7.c: 185:             PORTAbits.RA1 = 1;
+"187
+[; ;lab7.c: 187:             PORTAbits.RA1 = 1;
 [e = . . _PORTAbits 0 1 -> -> 1 `i `uc ]
-"186
-[; ;lab7.c: 186:         }
+"188
+[; ;lab7.c: 188:         }
 }
 [e :U 2284 ]
-"187
-[; ;lab7.c: 187:     }
+"189
+[; ;lab7.c: 189:     }
 }
 [e :U 2282 ]
-"188
-[; ;lab7.c: 188:     LATD += sevSeg[digit2];
-[e =+ _LATD -> *U + &U _sevSeg * -> -> _digit2 `ui `ux -> -> # *U &U _sevSeg `ui `ux `Vuc ]
 "190
-[; ;lab7.c: 190:     return;
+[; ;lab7.c: 190:     LATD += sevSeg[digit2];
+[e =+ _LATD -> *U + &U _sevSeg * -> -> _digit2 `ui `ux -> -> # *U &U _sevSeg `ui `ux `Vuc ]
+"192
+[; ;lab7.c: 192:     return;
 [e $UE 2279  ]
-"191
-[; ;lab7.c: 191: };
+"193
+[; ;lab7.c: 193: };
 [e :UE 2279 ]
 }
-"196
-[; ;lab7.c: 196: enum VALUE scanKeypad(void) {
+"198
+[; ;lab7.c: 198: enum VALUE scanKeypad(void) {
 [v _scanKeypad `(E16765 ~T0 @X0 1 ef ]
 {
 [e :U _scanKeypad ]
 [f ]
-"199
-[; ;lab7.c: 199:     PORTBbits.RB4 = 0;
-[e = . . _PORTBbits 0 4 -> -> 0 `i `uc ]
-"200
-[; ;lab7.c: 200:     PORTBbits.RB5 = 0;
-[e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 "201
-[; ;lab7.c: 201:     PORTBbits.RB6 = 0;
-[e = . . _PORTBbits 0 6 -> -> 0 `i `uc ]
+[; ;lab7.c: 201:     PORTBbits.RB4 = 0;
+[e = . . _PORTBbits 0 4 -> -> 0 `i `uc ]
 "202
-[; ;lab7.c: 202:     PORTBbits.RB7 = 0;
-[e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
+[; ;lab7.c: 202:     PORTBbits.RB5 = 0;
+[e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
 "203
-[; ;lab7.c: 203:     _delay((unsigned long)((50)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;lab7.c: 203:     PORTBbits.RB6 = 0;
+[e = . . _PORTBbits 0 6 -> -> 0 `i `uc ]
+"204
+[; ;lab7.c: 204:     PORTBbits.RB7 = 0;
+[e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 "205
-[; ;lab7.c: 205:     PORTBbits.RB4 = 1;
+[; ;lab7.c: 205:     _delay((unsigned long)((50)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"207
+[; ;lab7.c: 207:     PORTBbits.RB4 = 1;
 [e = . . _PORTBbits 0 4 -> -> 1 `i `uc ]
-"206
-[; ;lab7.c: 206:     if (PORTBbits.RB0 == 1) {
+"208
+[; ;lab7.c: 208:     if (PORTBbits.RB0 == 1) {
 [e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 2286  ]
 {
-"207
-[; ;lab7.c: 207:         return one;
+"209
+[; ;lab7.c: 209:         return one;
 [e ) . `E16765 1 ]
 [e $UE 2285  ]
-"208
-[; ;lab7.c: 208:     }
+"210
+[; ;lab7.c: 210:     }
 }
 [e :U 2286 ]
-"209
-[; ;lab7.c: 209:     if (PORTBbits.RB1 == 1) {
+"211
+[; ;lab7.c: 211:     if (PORTBbits.RB1 == 1) {
 [e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 2287  ]
 {
-"210
-[; ;lab7.c: 210:         return four;
+"212
+[; ;lab7.c: 212:         return four;
 [e ) . `E16765 4 ]
 [e $UE 2285  ]
-"211
-[; ;lab7.c: 211:     }
+"213
+[; ;lab7.c: 213:     }
 }
 [e :U 2287 ]
-"212
-[; ;lab7.c: 212:     if (PORTBbits.RB2 == 1) {
+"214
+[; ;lab7.c: 214:     if (PORTBbits.RB2 == 1) {
 [e $ ! == -> . . _PORTBbits 0 2 `i -> 1 `i 2288  ]
 {
-"213
-[; ;lab7.c: 213:         return seven;
+"215
+[; ;lab7.c: 215:         return seven;
 [e ) . `E16765 7 ]
 [e $UE 2285  ]
-"214
-[; ;lab7.c: 214:     }
+"216
+[; ;lab7.c: 216:     }
 }
 [e :U 2288 ]
-"215
-[; ;lab7.c: 215:     if (PORTBbits.RB3 == 1) {
+"217
+[; ;lab7.c: 217:     if (PORTBbits.RB3 == 1) {
 [e $ ! == -> . . _PORTBbits 0 3 `i -> 1 `i 2289  ]
 {
-"216
-[; ;lab7.c: 216:         display(0);
-[e ( _display (1 -> 0 `i ]
-"217
-[; ;lab7.c: 217:         _delay((unsigned long)((50)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "218
-[; ;lab7.c: 218:         return RESET;
+[; ;lab7.c: 218:         display(0);
+[e ( _display (1 -> 0 `i ]
+"219
+[; ;lab7.c: 219:         _delay((unsigned long)((50)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"220
+[; ;lab7.c: 220:         return RESET;
 [e ) . `E16765 15 ]
 [e $UE 2285  ]
-"219
-[; ;lab7.c: 219:     }
+"221
+[; ;lab7.c: 221:     }
 }
 [e :U 2289 ]
-"220
-[; ;lab7.c: 220:     PORTBbits.RB4 = 0;
+"222
+[; ;lab7.c: 222:     PORTBbits.RB4 = 0;
 [e = . . _PORTBbits 0 4 -> -> 0 `i `uc ]
-"223
-[; ;lab7.c: 223:     PORTBbits.RB5 = 1;
+"225
+[; ;lab7.c: 225:     PORTBbits.RB5 = 1;
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
-"224
-[; ;lab7.c: 224:     if (PORTBbits.RB0 == 1) {
+"226
+[; ;lab7.c: 226:     if (PORTBbits.RB0 == 1) {
 [e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 2290  ]
 {
-"225
-[; ;lab7.c: 225:         return two;
+"227
+[; ;lab7.c: 227:         return two;
 [e ) . `E16765 2 ]
 [e $UE 2285  ]
-"226
-[; ;lab7.c: 226:     }
+"228
+[; ;lab7.c: 228:     }
 }
 [e $U 2291  ]
-"227
-[; ;lab7.c: 227:     else if (PORTBbits.RB1 == 1) {
+"229
+[; ;lab7.c: 229:     else if (PORTBbits.RB1 == 1) {
 [e :U 2290 ]
 [e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 2292  ]
 {
-"228
-[; ;lab7.c: 228:         return five;
+"230
+[; ;lab7.c: 230:         return five;
 [e ) . `E16765 5 ]
 [e $UE 2285  ]
-"229
-[; ;lab7.c: 229:     }
+"231
+[; ;lab7.c: 231:     }
 }
 [e $U 2293  ]
-"230
-[; ;lab7.c: 230:     else if (PORTBbits.RB2 == 1) {
+"232
+[; ;lab7.c: 232:     else if (PORTBbits.RB2 == 1) {
 [e :U 2292 ]
 [e $ ! == -> . . _PORTBbits 0 2 `i -> 1 `i 2294  ]
 {
-"231
-[; ;lab7.c: 231:         return eight;
+"233
+[; ;lab7.c: 233:         return eight;
 [e ) . `E16765 8 ]
 [e $UE 2285  ]
-"232
-[; ;lab7.c: 232:     }
+"234
+[; ;lab7.c: 234:     }
 }
 [e $U 2295  ]
-"233
-[; ;lab7.c: 233:     else if (PORTBbits.RB3 == 1) {
+"235
+[; ;lab7.c: 235:     else if (PORTBbits.RB3 == 1) {
 [e :U 2294 ]
 [e $ ! == -> . . _PORTBbits 0 3 `i -> 1 `i 2296  ]
 {
-"234
-[; ;lab7.c: 234:         return zero;
+"236
+[; ;lab7.c: 236:         return zero;
 [e ) . `E16765 0 ]
 [e $UE 2285  ]
-"235
-[; ;lab7.c: 235:     }
+"237
+[; ;lab7.c: 237:     }
 }
 [e :U 2296 ]
 [e :U 2295 ]
 [e :U 2293 ]
 [e :U 2291 ]
-"236
-[; ;lab7.c: 236:     PORTBbits.RB5 = 0;
+"238
+[; ;lab7.c: 238:     PORTBbits.RB5 = 0;
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
-"239
-[; ;lab7.c: 239:     PORTBbits.RB6 = 1;
+"241
+[; ;lab7.c: 241:     PORTBbits.RB6 = 1;
 [e = . . _PORTBbits 0 6 -> -> 1 `i `uc ]
-"240
-[; ;lab7.c: 240:     if (PORTBbits.RB0 == 1) { return three; }
+"242
+[; ;lab7.c: 242:     if (PORTBbits.RB0 == 1) { return three; }
 [e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 2297  ]
 {
 [e ) . `E16765 3 ]
 [e $UE 2285  ]
 }
 [e $U 2298  ]
-"241
-[; ;lab7.c: 241:     else if (PORTBbits.RB1 == 1) { return six; }
+"243
+[; ;lab7.c: 243:     else if (PORTBbits.RB1 == 1) { return six; }
 [e :U 2297 ]
 [e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 2299  ]
 {
@@ -2974,8 +2974,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $UE 2285  ]
 }
 [e $U 2300  ]
-"242
-[; ;lab7.c: 242:     else if (PORTBbits.RB2 == 1) { return nine; }
+"244
+[; ;lab7.c: 244:     else if (PORTBbits.RB2 == 1) { return nine; }
 [e :U 2299 ]
 [e $ ! == -> . . _PORTBbits 0 2 `i -> 1 `i 2301  ]
 {
@@ -2983,8 +2983,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $UE 2285  ]
 }
 [e $U 2302  ]
-"243
-[; ;lab7.c: 243:     else if (PORTBbits.RB3 == 1) { return COMPUTE; }
+"245
+[; ;lab7.c: 245:     else if (PORTBbits.RB3 == 1) { return COMPUTE; }
 [e :U 2301 ]
 [e $ ! == -> . . _PORTBbits 0 3 `i -> 1 `i 2303  ]
 {
@@ -2995,22 +2995,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2302 ]
 [e :U 2300 ]
 [e :U 2298 ]
-"244
-[; ;lab7.c: 244:     PORTBbits.RB6 = 0;
+"246
+[; ;lab7.c: 246:     PORTBbits.RB6 = 0;
 [e = . . _PORTBbits 0 6 -> -> 0 `i `uc ]
-"247
-[; ;lab7.c: 247:     PORTBbits.RB7 = 1;
+"249
+[; ;lab7.c: 249:     PORTBbits.RB7 = 1;
 [e = . . _PORTBbits 0 7 -> -> 1 `i `uc ]
-"248
-[; ;lab7.c: 248:     if (PORTBbits.RB0 == 1) { return ADD; }
+"250
+[; ;lab7.c: 250:     if (PORTBbits.RB0 == 1) { return ADD; }
 [e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 2304  ]
 {
 [e ) . `E16765 10 ]
 [e $UE 2285  ]
 }
 [e $U 2305  ]
-"249
-[; ;lab7.c: 249:     else if (PORTBbits.RB1 == 1) { return SUBTRACT; }
+"251
+[; ;lab7.c: 251:     else if (PORTBbits.RB1 == 1) { return SUBTRACT; }
 [e :U 2304 ]
 [e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 2306  ]
 {
@@ -3018,8 +3018,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $UE 2285  ]
 }
 [e $U 2307  ]
-"250
-[; ;lab7.c: 250:     else if (PORTBbits.RB2 == 1) { return MULTIPLY; }
+"252
+[; ;lab7.c: 252:     else if (PORTBbits.RB2 == 1) { return MULTIPLY; }
 [e :U 2306 ]
 [e $ ! == -> . . _PORTBbits 0 2 `i -> 1 `i 2308  ]
 {
@@ -3027,8 +3027,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $UE 2285  ]
 }
 [e $U 2309  ]
-"251
-[; ;lab7.c: 251:     else if (PORTBbits.RB3 == 1) { return DIVIDE; }
+"253
+[; ;lab7.c: 253:     else if (PORTBbits.RB3 == 1) { return DIVIDE; }
 [e :U 2308 ]
 [e $ ! == -> . . _PORTBbits 0 3 `i -> 1 `i 2310  ]
 {
@@ -3039,19 +3039,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2309 ]
 [e :U 2307 ]
 [e :U 2305 ]
-"252
-[; ;lab7.c: 252:     PORTBbits.RB7 = 0;
-[e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
 "254
-[; ;lab7.c: 254:     return NOVALUE;
+[; ;lab7.c: 254:     PORTBbits.RB7 = 0;
+[e = . . _PORTBbits 0 7 -> -> 0 `i `uc ]
+"256
+[; ;lab7.c: 256:     return NOVALUE;
 [e ) . `E16765 17 ]
 [e $UE 2285  ]
-"255
-[; ;lab7.c: 255: };
+"257
+[; ;lab7.c: 257: };
 [e :UE 2285 ]
 }
-"259
-[; ;lab7.c: 259: int calculate(int val1, int val2, enum VALUE op) {
+"261
+[; ;lab7.c: 261: int calculate(int val1, int val2, enum VALUE op) {
 [v _calculate `(i ~T0 @X0 1 ef3`i`i`E16765 ]
 {
 [e :U _calculate ]
@@ -3059,59 +3059,59 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _val2 `i ~T0 @X0 1 r2 ]
 [v _op `E16765 ~T0 @X0 1 r3 ]
 [f ]
-"260
-[; ;lab7.c: 260:     switch (op) {
+"262
+[; ;lab7.c: 262:     switch (op) {
 [e $U 2313  ]
 {
-"261
-[; ;lab7.c: 261:         case ADD:
+"263
+[; ;lab7.c: 263:         case ADD:
 [e :U 2314 ]
-"262
-[; ;lab7.c: 262:             return val1 + val2;
+"264
+[; ;lab7.c: 264:             return val1 + val2;
 [e ) + _val1 _val2 ]
 [e $UE 2311  ]
-"263
-[; ;lab7.c: 263:         case SUBTRACT:
+"265
+[; ;lab7.c: 265:         case SUBTRACT:
 [e :U 2315 ]
-"264
-[; ;lab7.c: 264:             return val1 - val2;
+"266
+[; ;lab7.c: 266:             return val1 - val2;
 [e ) - _val1 _val2 ]
 [e $UE 2311  ]
-"265
-[; ;lab7.c: 265:         case MULTIPLY:
+"267
+[; ;lab7.c: 267:         case MULTIPLY:
 [e :U 2316 ]
-"266
-[; ;lab7.c: 266:             return val1 * val2;
+"268
+[; ;lab7.c: 268:             return val1 * val2;
 [e ) * _val1 _val2 ]
 [e $UE 2311  ]
-"267
-[; ;lab7.c: 267:         case DIVIDE:
+"269
+[; ;lab7.c: 269:         case DIVIDE:
 [e :U 2317 ]
-"268
-[; ;lab7.c: 268:             if (val2 == 0) {
+"270
+[; ;lab7.c: 270:             if (val2 == 0) {
 [e $ ! == _val2 -> 0 `i 2318  ]
 {
-"269
-[; ;lab7.c: 269:                 return 0;
-[e ) -> 0 `i ]
-[e $UE 2311  ]
-"270
-[; ;lab7.c: 270:             }
-}
-[e :U 2318 ]
 "271
-[; ;lab7.c: 271:             return val1 / val2;
-[e ) / _val1 _val2 ]
+[; ;lab7.c: 271:                 return 0;
+[e ) -> 0 `i ]
 [e $UE 2311  ]
 "272
-[; ;lab7.c: 272:         default:
-[e :U 2319 ]
+[; ;lab7.c: 272:             }
+}
+[e :U 2318 ]
 "273
-[; ;lab7.c: 273:             return 0;
-[e ) -> 0 `i ]
+[; ;lab7.c: 273:             return val1 / val2;
+[e ) / _val1 _val2 ]
 [e $UE 2311  ]
 "274
-[; ;lab7.c: 274:     }
+[; ;lab7.c: 274:         default:
+[e :U 2319 ]
+"275
+[; ;lab7.c: 275:             return 0;
+[e ) -> 0 `i ]
+[e $UE 2311  ]
+"276
+[; ;lab7.c: 276:     }
 }
 [e $U 2312  ]
 [e :U 2313 ]
@@ -3121,7 +3121,7 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> . `E16765 13 `ui 2317
  2319 ]
 [e :U 2312 ]
-"275
-[; ;lab7.c: 275: };
+"277
+[; ;lab7.c: 277: };
 [e :UE 2311 ]
 }

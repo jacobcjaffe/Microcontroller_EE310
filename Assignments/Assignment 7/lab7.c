@@ -8,7 +8,8 @@
  * pressed. It will then take a second input, the operator, and turn off the 
  * display. It will then take a third input, the second operand, and display
  * that value. The user will then press the number 8, and the result will be 
- * displayed until 
+ * displayed. If at any point, '*' is pressed on the keypad, all operands will
+ * be reset and it will start at setting the first input again.
  * the operator, and turn off the display. 
  * Inputs: RB0-RB8 for the keypad.
  * Outputs: RC0-RC8 first seven segment, RD0-RD8 second seven segment.
@@ -20,6 +21,7 @@
  * Author: Jacob Jaffe
  * Versions:
  *      V1.0: Basic Outline
+ *      V2.0: Fully Working
  */
 
 #include <xc.h> // must have this
@@ -80,7 +82,6 @@ void main (void){
     
     
     while(1) {
-        mainLoop:
         ret1 = NOVALUE;
         operator = NOVALUE;
         value1 = 0;
@@ -203,15 +204,9 @@ enum VALUE scanKeypad(void) {
     __delay_ms(50);
     // scan the first column
     PORTBbits.RB4 = 1;
-    if (PORTBbits.RB0 == 1) { 
-        return one; 
-    }
-    if (PORTBbits.RB1 == 1) { 
-        return four; 
-    }
-    if (PORTBbits.RB2 == 1) { 
-        return seven; 
-    }
+    if (PORTBbits.RB0 == 1) { return one; }
+    if (PORTBbits.RB1 == 1) { return four; }
+    if (PORTBbits.RB2 == 1) { return seven; }
     if (PORTBbits.RB3 == 1) { // reset
         display(0);
         __delay_ms(50);

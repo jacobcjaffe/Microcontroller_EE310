@@ -7,7 +7,7 @@
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "lab7.c" 2
-# 25 "lab7.c"
+# 27 "lab7.c"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -26872,7 +26872,7 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 2 3
-# 26 "lab7.c" 2
+# 28 "lab7.c" 2
 # 1 "./Config.h" 1
 # 21 "./Config.h"
 #pragma config FEXTOSC = LP
@@ -26923,7 +26923,7 @@ unsigned char __t3rd16on(void);
 
 
 #pragma config CP = OFF
-# 27 "lab7.c" 2
+# 29 "lab7.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 1 3
@@ -27076,7 +27076,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 28 "lab7.c" 2
+# 30 "lab7.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/math.h" 1 3
 # 15 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/math.h" 3
@@ -27450,7 +27450,7 @@ double jn(int, double);
 double y0(double);
 double y1(double);
 double yn(int, double);
-# 30 "lab7.c" 2
+# 32 "lab7.c" 2
 
 
 
