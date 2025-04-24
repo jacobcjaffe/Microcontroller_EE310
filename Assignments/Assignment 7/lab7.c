@@ -86,7 +86,8 @@ void main (void){
         operator = NOVALUE;
         value1 = 0;
         value2 = 0;
-
+        
+        
         // wait for the first input
         while((int)ret1 >= 100) {
             ret1 = scanKeypad();
@@ -118,7 +119,7 @@ void main (void){
         else if (ret1 == RESET) { continue; } // reset
         // else  an operator was input.
         ret1 = NOVALUE; 
-        display(0); // clear display
+        display(200); // clear display
         __delay_ms(300);
         
         // wait for the second input
@@ -151,7 +152,8 @@ void main (void){
         // otherwise compute was pressed.
         result = calculate(value1, value2, operator);
         display(result);
-        __delay_ms(800);
+        __delay_ms(1500);
+       
     }
 }
 

@@ -27504,11 +27504,11 @@ void main (void){
 
 
     while(1) {
-        mainLoop:
         ret1 = NOVALUE;
         operator = NOVALUE;
         value1 = 0;
         value2 = 0;
+
 
 
         while((int)ret1 >= 100) {
@@ -27541,7 +27541,7 @@ void main (void){
         else if (ret1 == RESET) { continue; }
 
         ret1 = NOVALUE;
-        display(0);
+        display(200);
         _delay((unsigned long)((300)*(4000000/4000.0)));
 
 
@@ -27574,7 +27574,8 @@ void main (void){
 
         result = calculate(value1, value2, operator);
         display(result);
-        _delay((unsigned long)((800)*(4000000/4000.0)));
+        _delay((unsigned long)((1500)*(4000000/4000.0)));
+
     }
 }
 
@@ -27627,15 +27628,9 @@ enum VALUE scanKeypad(void) {
     _delay((unsigned long)((50)*(4000000/4000.0)));
 
     PORTBbits.RB4 = 1;
-    if (PORTBbits.RB0 == 1) {
-        return one;
-    }
-    if (PORTBbits.RB1 == 1) {
-        return four;
-    }
-    if (PORTBbits.RB2 == 1) {
-        return seven;
-    }
+    if (PORTBbits.RB0 == 1) { return one; }
+    if (PORTBbits.RB1 == 1) { return four; }
+    if (PORTBbits.RB2 == 1) { return seven; }
     if (PORTBbits.RB3 == 1) {
         display(0);
         _delay((unsigned long)((50)*(4000000/4000.0)));

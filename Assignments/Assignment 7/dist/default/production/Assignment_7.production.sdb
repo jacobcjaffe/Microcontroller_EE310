@@ -56,11 +56,11 @@ NOVALUE 255
 [v ___omul __omul `(uo  1 e 8 0 ]
 "62 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
 [v _main main `(v  1 e 1 0 ]
-"160
+"161
 [v _display display `(v  1 e 1 0 ]
-"198
+"199
 [v _scanKeypad scanKeypad `(E16765  1 e 1 0 ]
-"261
+"256
 [v _calculate calculate `(i  1 e 2 0 ]
 "8017 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc/pic18f47k42.h
 [v _ANSELA ANSELA `VEuc  1 e 1 @14912 ]
@@ -149,22 +149,22 @@ NOVALUE 255
 [v main@ret1 ret1 `E16765  1 a 1 24 ]
 "64
 [v main@operator operator `E16765  1 a 1 19 ]
-"157
+"158
 } 0
-"198
+"199
 [v _scanKeypad scanKeypad `(E16765  1 e 1 0 ]
 {
-"257
+"252
 } 0
-"160
+"161
 [v _display display `(v  1 e 1 0 ]
 {
-"177
+"178
 [v display@digit1 digit1 `i  1 a 2 12 ]
 [v display@digit2 digit2 `i  1 a 2 10 ]
-"160
+"161
 [v display@dValue dValue `i  1 p 2 8 ]
-"193
+"194
 } 0
 "15 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -187,13 +187,13 @@ NOVALUE 255
 [v ___awmod@divisor divisor `i  1 p 2 2 ]
 "34
 } 0
-"261 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
+"256 C:\Users\Jacob\Documents\ee310l\Microcontroller_EE310\Assignments\Assignment 7\lab7.c
 [v _calculate calculate `(i  1 e 2 0 ]
 {
 [v calculate@val1 val1 `i  1 p 2 8 ]
 [v calculate@val2 val2 `i  1 p 2 10 ]
 [v calculate@op op `E16765  1 p 1 12 ]
-"277
+"272
 } 0
 "7 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
