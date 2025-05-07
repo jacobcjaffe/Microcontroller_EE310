@@ -47,7 +47,7 @@ void __interrupt(irq(IRQ_IOC)) ISR(void) {
         // Handle the RC1 (IOCC1) interrupt event
         for (int i = 0; i < 30; i++) {
             LATC5 = ~LATC5;
-            __delay_ms(300);
+            //__delay_ms(300);
         }
         LATC5 = 0;
         IOCCFbits.IOCCF2 = 0; // Clear the flag after handling

@@ -42,12 +42,13 @@ void main(void) {
     Initialize();
     LCD_Init();
     LCD_String_xy(1, 0, "Jacob");
-    __delay_ms(1500);
+    
+    //__delay_ms(1500);
     LCD_Clear();
     
     //read ADC part of assignment
-    readADC();
-    //PWM part of assignmnet
+    //readADC();
+    //PWM part of assignment
     PWM();
     
     return;
@@ -103,12 +104,12 @@ void PWM(void) {
     while (1) {
         pwmStatus = PWM2_OutputStatusGet();
         PORTBbits.RB2 = pwmStatus;
-        //T2CON=0x00; // stop the timer & do what you have to do
         /*
         if (PIR4bits.TMR2IF == 1) {
             PIR4bits.TMR2IF = 0;
             myLED ^= 1; // ISR code goes here
-        }*/
+        }
+        */
         // increment the duty cycle by 10 percent every time button is pressed
         if (PORTEbits.RE1 == 1) {
             index++;

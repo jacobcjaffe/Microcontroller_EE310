@@ -7,14 +7,7 @@
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-
-
-
-
-
-
-
-
+# 25 "main.c"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -26879,7 +26872,7 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 2 3
-# 10 "main.c" 2
+# 26 "main.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 1 3
@@ -27032,7 +27025,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 11 "main.c" 2
+# 27 "main.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/math.h" 1 3
 # 15 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/math.h" 3
@@ -27406,7 +27399,7 @@ double jn(int, double);
 double y0(double);
 double y1(double);
 double yn(int, double);
-# 13 "main.c" 2
+# 29 "main.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/string.h" 1 3
 # 25 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/string.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 1 3
@@ -27464,7 +27457,7 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 14 "main.c" 2
+# 30 "main.c" 2
 # 1 "./LCD.h" 1
 # 25 "./LCD.h"
 void MSdelay(unsigned int val);
@@ -27545,7 +27538,7 @@ void MSdelay(unsigned int val)
         for(i=0;i<val;i++)
             for(j=0;j<165;j++);
 }
-# 15 "main.c" 2
+# 31 "main.c" 2
 # 1 "./init.h" 1
 # 11 "./init.h"
 void Initialize(void) {
@@ -27587,14 +27580,14 @@ void __attribute__((picinterrupt(("irq(7)")))) ISR(void) {
 
         for (int i = 0; i < 30; i++) {
             LATC5 = ~LATC5;
-            _delay((unsigned long)((300)*(4000000/4000.0)));
+
         }
         LATC5 = 0;
         IOCCFbits.IOCCF2 = 0;
 
     }
 }
-# 16 "main.c" 2
+# 32 "main.c" 2
 # 1 "./config.h" 1
 # 15 "./config.h"
 #pragma config FEXTOSC = LP
@@ -27645,7 +27638,7 @@ void __attribute__((picinterrupt(("irq(7)")))) ISR(void) {
 
 
 #pragma config CP = OFF
-# 17 "main.c" 2
+# 33 "main.c" 2
 # 1 "./PWM.h" 1
 # 11 "./PWM.h"
 void TMR2_Initialize(void)
@@ -27671,7 +27664,7 @@ void TMR2_Initialize(void)
     PIR4bits.TMR2IF = 0;
 
 
-    T2CON = 0xA0;
+    T2CON = 0xB0;
 }
 # 49 "./PWM.h"
 void TMR2_Start(void)
@@ -27799,7 +27792,7 @@ void PWM2_LoadDutyValue(uint16_t dutyValue)
 
     return(CCP2CONbits.OUT);
 }
-# 18 "main.c" 2
+# 34 "main.c" 2
 
 
 
@@ -27811,11 +27804,12 @@ void main(void) {
     Initialize();
     LCD_Init();
     LCD_String_xy(1, 0, "Jacob");
-    _delay((unsigned long)((1500)*(4000000/4000.0)));
+
+
     LCD_Clear();
 
 
-    readADC();
+
 
     PWM();
 

@@ -310,11 +310,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc/pic18f47k42.h: 39631: extern volatile CCP2CONbits_t CCP2CONbits __attribute__((address(0x3F7A)));
 [v _CCP2CONbits `VS1779 ~T0 @X0 0 e@16250 ]
 [p mainexit ]
-"23 main.c
-[; ;main.c: 23: void readADC(void);
-[v _readADC `(v ~T0 @X0 0 ef ]
-"22
-[; ;main.c: 22: void PWM(void);
+"38 main.c
+[; ;main.c: 38: void PWM(void);
 [v _PWM `(v ~T0 @X0 0 ef ]
 "30370 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc/pic18f47k42.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc/pic18f47k42.h: 30370: extern volatile unsigned char ADRESH __attribute__((address(0x3EF0)));
@@ -2967,9 +2964,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "49
 [; ;./init.h: 49:             LATC5 = ~LATC5;
 [e = _LATC5 -> ~ -> _LATC5 `ui `b ]
-"50
-[; ;./init.h: 50:             _delay((unsigned long)((300)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "51
 [; ;./init.h: 51:         }
 }
@@ -3082,8 +3076,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./PWM.h: 31:     PIR4bits.TMR2IF = 0;
 [e = . . _PIR4bits 0 2 -> -> 0 `i `uc ]
 "34
-[; ;./PWM.h: 34:     T2CON = 0xA0;
-[e = _T2CON -> -> 160 `i `uc ]
+[; ;./PWM.h: 34:     T2CON = 0xB0;
+[e = _T2CON -> -> 176 `i `uc ]
 "35
 [; ;./PWM.h: 35: }
 [e :UE 2272 ]
@@ -3427,120 +3421,114 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2289 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"25 main.c
-[; ;main.c: 25: void main(void) {
+"41 main.c
+[; ;main.c: 41: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"26
-[; ;main.c: 26:     Initialize();
+"42
+[; ;main.c: 42:     Initialize();
 [e ( _Initialize ..  ]
-"27
-[; ;main.c: 27:     LCD_Init();
+"43
+[; ;main.c: 43:     LCD_Init();
 [e ( _LCD_Init ..  ]
-"28
-[; ;main.c: 28:     LCD_String_xy(1, 0, "Jacob");
+"44
+[; ;main.c: 44:     LCD_String_xy(1, 0, "Jacob");
 [e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 0 `i `uc :s 1C ]
-"29
-[; ;main.c: 29:     _delay((unsigned long)((1500)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1500 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"30
-[; ;main.c: 30:     LCD_Clear();
+"47
+[; ;main.c: 47:     LCD_Clear();
 [e ( _LCD_Clear ..  ]
-"33
-[; ;main.c: 33:     readADC();
-[e ( _readADC ..  ]
-"35
-[; ;main.c: 35:     PWM();
+"52
+[; ;main.c: 52:     PWM();
 [e ( _PWM ..  ]
-"37
-[; ;main.c: 37:     return;
+"54
+[; ;main.c: 54:     return;
 [e $UE 2290  ]
-"38
-[; ;main.c: 38: }
+"55
+[; ;main.c: 55: }
 [e :UE 2290 ]
 }
-"40
-[; ;main.c: 40: void readADC(void) {
+"57
+[; ;main.c: 57: void readADC(void) {
 [v _readADC `(v ~T0 @X0 1 ef ]
 {
 [e :U _readADC ]
 [f ]
-"41
-[; ;main.c: 41:     int Vref = 5;
+"58
+[; ;main.c: 58:     int Vref = 5;
 [v _Vref `i ~T0 @X0 1 a ]
 [e = _Vref -> 5 `i ]
-"42
-[; ;main.c: 42:     char buffer[12];
+"59
+[; ;main.c: 59:     char buffer[12];
 [v _buffer `uc ~T0 @X0 -> 12 `i a ]
-"43
-[; ;main.c: 43:     int digital;
+"60
+[; ;main.c: 60:     int digital;
 [v _digital `i ~T0 @X0 1 a ]
-"44
-[; ;main.c: 44:     float voltage;
+"61
+[; ;main.c: 61:     float voltage;
 [v _voltage `f ~T0 @X0 1 a ]
-"45
-[; ;main.c: 45:     LCD_String_xy(1, 0, "input voltage:");
+"62
+[; ;main.c: 62:     LCD_String_xy(1, 0, "input voltage:");
 [e ( _LCD_String_xy (3 , , -> -> 1 `i `uc -> -> 0 `i `uc :s 2C ]
-"46
-[; ;main.c: 46:     while(1) {
+"63
+[; ;main.c: 63:     while(1) {
 [e :U 2293 ]
 {
-"47
-[; ;main.c: 47:         ADCON0bits.GO = 1;
+"64
+[; ;main.c: 64:         ADCON0bits.GO = 1;
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"48
-[; ;main.c: 48:         while(ADCON0bits.GO);
+"65
+[; ;main.c: 65:         while(ADCON0bits.GO);
 [e $U 2295  ]
 [e :U 2296 ]
 [e :U 2295 ]
 [e $ != -> . . _ADCON0bits 0 0 `i -> 0 `i 2296  ]
 [e :U 2297 ]
-"49
-[; ;main.c: 49:         digital = (ADRESH * 256) | ADRESL;
+"66
+[; ;main.c: 66:         digital = (ADRESH * 256) | ADRESL;
 [e = _digital | * -> _ADRESH `i -> 256 `i -> _ADRESL `i ]
-"50
-[; ;main.c: 50:         voltage = digital * ((float)Vref / (float)(4096));
+"67
+[; ;main.c: 67:         voltage = digital * ((float)Vref / (float)(4096));
 [e = _voltage * -> _digital `f / -> _Vref `f -> -> 4096 `i `f ]
-"51
-[; ;main.c: 51:         sprintf(buffer, "%.2f", voltage);
+"68
+[; ;main.c: 68:         sprintf(buffer, "%.2f", voltage);
 [e ( _sprintf (1 , (. , &U _buffer :s 3C -> _voltage `d ]
-"52
-[; ;main.c: 52:         strcat(buffer, " V");
+"69
+[; ;main.c: 69:         strcat(buffer, " V");
 [e ( _strcat (2 , &U _buffer :s 4C ]
-"53
-[; ;main.c: 53:         LCD_String_xy(2, 0, buffer);
+"70
+[; ;main.c: 70:         LCD_String_xy(2, 0, buffer);
 [e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _buffer `*Cuc ]
-"54
-[; ;main.c: 54:         _delay((unsigned long)((2000)*(4000000/4000.0)));
+"71
+[; ;main.c: 71:         _delay((unsigned long)((2000)*(4000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"55
-[; ;main.c: 55:     }
+"72
+[; ;main.c: 72:     }
 }
 [e :U 2292 ]
 [e $U 2293  ]
 [e :U 2294 ]
-"56
-[; ;main.c: 56: }
+"73
+[; ;main.c: 73: }
 [e :UE 2291 ]
 }
-"58
-[; ;main.c: 58: void PWM(void) {
+"75
+[; ;main.c: 75: void PWM(void) {
 [v _PWM `(v ~T0 @X0 1 ef ]
 {
 [e :U _PWM ]
 [f ]
-"59
-[; ;main.c: 59:     unsigned int checkdutyCycle, pwmStatus, preScale;
+"76
+[; ;main.c: 76:     unsigned int checkdutyCycle, pwmStatus, preScale;
 [v _checkdutyCycle `ui ~T0 @X0 1 a ]
 [v _pwmStatus `ui ~T0 @X0 1 a ]
 [v _preScale `ui ~T0 @X0 1 a ]
 [v F16999 `i ~T0 @X0 -> 10 `i s ]
 [i F16999
 :U ..
-"60
-[; ;main.c: 60:     int dcVal[10] = {0, 103, 205, 308, 410, 512, 615, 717, 820, 922};
+"77
+[; ;main.c: 77:     int dcVal[10] = {0, 103, 205, 308, 410, 512, 615, 717, 820, 922};
 -> 0 `i
 -> 103 `i
 -> 205 `i
@@ -3555,112 +3543,112 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 [v _dcVal `i ~T0 @X0 -> 10 `i a ]
 [e = _dcVal F16999 ]
-"61
-[; ;main.c: 61:     int index = 0;
+"78
+[; ;main.c: 78:     int index = 0;
 [v _index `i ~T0 @X0 1 a ]
 [e = _index -> 0 `i ]
-"62
-[; ;main.c: 62:     char percent[15];
-[v _percent `uc ~T0 @X0 -> 15 `i a ]
-"63
-[; ;main.c: 63:     OSCSTATbits.HFOR =1;
-[e = . . _OSCSTATbits 0 6 -> -> 1 `i `uc ]
-"64
-[; ;main.c: 64:     OSCFRQ=0x02;
-[e = _OSCFRQ -> -> 2 `i `uc ]
-"66
-[; ;main.c: 66:     ANSELB = 0b00000000;
-[e = _ANSELB -> -> 0 `i `uc ]
-"67
-[; ;main.c: 67:     TRISB= 0b00000000;
-[e = _TRISB -> -> 0 `i `uc ]
-"68
-[; ;main.c: 68:     PORTB= 0b00000000;
-[e = _PORTB -> -> 0 `i `uc ]
-"69
-[; ;main.c: 69:     TMR2_Initialize();
-[e ( _TMR2_Initialize ..  ]
-"70
-[; ;main.c: 70:     TMR2_StartTimer();
-[e ( _TMR2_StartTimer ..  ]
-"72
-[; ;main.c: 72:     PWM_Output_D8_Enable();
-[e ( _PWM_Output_D8_Enable ..  ]
-"73
-[; ;main.c: 73:     PWM2_Initialize();
-[e ( _PWM2_Initialize ..  ]
-"74
-[; ;main.c: 74:     PWM2_LoadDutyValue( dcVal[index] );
-[e ( _PWM2_LoadDutyValue (1 -> *U + &U _dcVal * -> -> _index `ui `ux -> -> # *U &U _dcVal `ui `ux `us ]
 "79
-[; ;main.c: 79:     checkdutyCycle =(uint16_t)((100UL*dcVal[index])/(4*(T2PR+1)));
-[e = _checkdutyCycle -> -> / * -> 100 `ul -> -> *U + &U _dcVal * -> -> _index `ui `ux -> -> # *U &U _dcVal `ui `ux `l `ul -> -> * -> 4 `i + -> _T2PR `i -> 1 `i `l `ul `us `ui ]
+[; ;main.c: 79:     char percent[15];
+[v _percent `uc ~T0 @X0 -> 15 `i a ]
+"80
+[; ;main.c: 80:     OSCSTATbits.HFOR =1;
+[e = . . _OSCSTATbits 0 6 -> -> 1 `i `uc ]
 "81
-[; ;main.c: 81:     preScale = ((T2CON >> 4) & (0x0F));
-[e = _preScale -> & >> -> _T2CON `i -> 4 `i -> 15 `i `ui ]
+[; ;main.c: 81:     OSCFRQ=0x02;
+[e = _OSCFRQ -> -> 2 `i `uc ]
 "83
-[; ;main.c: 83:     LCD_Clear();
-[e ( _LCD_Clear ..  ]
+[; ;main.c: 83:     ANSELB = 0b00000000;
+[e = _ANSELB -> -> 0 `i `uc ]
 "84
-[; ;main.c: 84:     sprintf(percent, "%d", checkdutyCycle);
-[e ( _sprintf (1 , (. , &U _percent :s 5C _checkdutyCycle ]
+[; ;main.c: 84:     TRISB= 0b00000000;
+[e = _TRISB -> -> 0 `i `uc ]
 "85
-[; ;main.c: 85:     LCD_String_xy(2, 0, percent);
-[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _percent `*Cuc ]
+[; ;main.c: 85:     PORTB= 0b00000000;
+[e = _PORTB -> -> 0 `i `uc ]
+"86
+[; ;main.c: 86:     TMR2_Initialize();
+[e ( _TMR2_Initialize ..  ]
 "87
-[; ;main.c: 87:     while (1) {
+[; ;main.c: 87:     TMR2_StartTimer();
+[e ( _TMR2_StartTimer ..  ]
+"89
+[; ;main.c: 89:     PWM_Output_D8_Enable();
+[e ( _PWM_Output_D8_Enable ..  ]
+"90
+[; ;main.c: 90:     PWM2_Initialize();
+[e ( _PWM2_Initialize ..  ]
+"91
+[; ;main.c: 91:     PWM2_LoadDutyValue( dcVal[index] );
+[e ( _PWM2_LoadDutyValue (1 -> *U + &U _dcVal * -> -> _index `ui `ux -> -> # *U &U _dcVal `ui `ux `us ]
+"96
+[; ;main.c: 96:     checkdutyCycle =(uint16_t)((100UL*dcVal[index])/(4*(T2PR+1)));
+[e = _checkdutyCycle -> -> / * -> 100 `ul -> -> *U + &U _dcVal * -> -> _index `ui `ux -> -> # *U &U _dcVal `ui `ux `l `ul -> -> * -> 4 `i + -> _T2PR `i -> 1 `i `l `ul `us `ui ]
+"98
+[; ;main.c: 98:     preScale = ((T2CON >> 4) & (0x0F));
+[e = _preScale -> & >> -> _T2CON `i -> 4 `i -> 15 `i `ui ]
+"100
+[; ;main.c: 100:     LCD_Clear();
+[e ( _LCD_Clear ..  ]
+"101
+[; ;main.c: 101:     sprintf(percent, "%d", checkdutyCycle);
+[e ( _sprintf (1 , (. , &U _percent :s 5C _checkdutyCycle ]
+"102
+[; ;main.c: 102:     LCD_String_xy(2, 0, percent);
+[e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _percent `*Cuc ]
+"104
+[; ;main.c: 104:     while (1) {
 [e :U 2300 ]
 {
-"88
-[; ;main.c: 88:         pwmStatus = PWM2_OutputStatusGet();
+"105
+[; ;main.c: 105:         pwmStatus = PWM2_OutputStatusGet();
 [e = _pwmStatus -> ( _PWM2_OutputStatusGet ..  `ui ]
-"89
-[; ;main.c: 89:         PORTBbits.RB2 = pwmStatus;
+"106
+[; ;main.c: 106:         PORTBbits.RB2 = pwmStatus;
 [e = . . _PORTBbits 0 2 -> _pwmStatus `uc ]
-"97
-[; ;main.c: 97:         if (PORTEbits.RE1 == 1) {
+"114
+[; ;main.c: 114:         if (PORTEbits.RE1 == 1) {
 [e $ ! == -> . . _PORTEbits 0 1 `i -> 1 `i 2302  ]
 {
-"98
-[; ;main.c: 98:             index++;
+"115
+[; ;main.c: 115:             index++;
 [e ++ _index -> 1 `i ]
-"100
-[; ;main.c: 100:             if (index == 10) { index = 0; }
+"117
+[; ;main.c: 117:             if (index == 10) { index = 0; }
 [e $ ! == _index -> 10 `i 2303  ]
 {
 [e = _index -> 0 `i ]
 }
 [e :U 2303 ]
-"101
-[; ;main.c: 101:             checkdutyCycle =(uint16_t)((100UL*dcVal[index])/(4*(T2PR+1)));
+"118
+[; ;main.c: 118:             checkdutyCycle =(uint16_t)((100UL*dcVal[index])/(4*(T2PR+1)));
 [e = _checkdutyCycle -> -> / * -> 100 `ul -> -> *U + &U _dcVal * -> -> _index `ui `ux -> -> # *U &U _dcVal `ui `ux `l `ul -> -> * -> 4 `i + -> _T2PR `i -> 1 `i `l `ul `us `ui ]
-"104
-[; ;main.c: 104:             PWM2_LoadDutyValue( dcVal[index] );
+"121
+[; ;main.c: 121:             PWM2_LoadDutyValue( dcVal[index] );
 [e ( _PWM2_LoadDutyValue (1 -> *U + &U _dcVal * -> -> _index `ui `ux -> -> # *U &U _dcVal `ui `ux `us ]
-"107
-[; ;main.c: 107:             LCD_Clear();
+"124
+[; ;main.c: 124:             LCD_Clear();
 [e ( _LCD_Clear ..  ]
-"108
-[; ;main.c: 108:             sprintf(percent, "%d", checkdutyCycle);
+"125
+[; ;main.c: 125:             sprintf(percent, "%d", checkdutyCycle);
 [e ( _sprintf (1 , (. , &U _percent :s 6C _checkdutyCycle ]
-"109
-[; ;main.c: 109:             LCD_String_xy(2, 0, percent);
+"126
+[; ;main.c: 126:             LCD_String_xy(2, 0, percent);
 [e ( _LCD_String_xy (3 , , -> -> 2 `i `uc -> -> 0 `i `uc -> &U _percent `*Cuc ]
-"110
-[; ;main.c: 110:             _delay((unsigned long)((1000)*(4000000/4000.0)));
+"127
+[; ;main.c: 127:             _delay((unsigned long)((1000)*(4000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"111
-[; ;main.c: 111:         }
+"128
+[; ;main.c: 128:         }
 }
 [e :U 2302 ]
-"112
-[; ;main.c: 112:     }
+"129
+[; ;main.c: 129:     }
 }
 [e :U 2299 ]
 [e $U 2300  ]
 [e :U 2301 ]
-"113
-[; ;main.c: 113: };
+"130
+[; ;main.c: 130: };
 [e :UE 2298 ]
 }
 [p f _sprintf 8462464 ]
